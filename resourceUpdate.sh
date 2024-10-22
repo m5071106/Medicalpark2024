@@ -4,10 +4,14 @@ echo "delete old resources..."
 rm -fr ./medicalpark2024/
 mkdir ./medicalpark2024/
 mkdir ./medicalpark2024/assets/
+mkdir ./medicalpark2024/img/
+mkdir ./medicalpark2024/qr/
+mkdir ./medicalpark2024/quiz/
 echo "copy new resources..."
 cp -r ./resources/assets/*.patt ./medicalpark2024/assets/
 cp -r ./resources/img ./medicalpark2024/
 cp -r ./resources/qr ./medicalpark2024/
+cp -r ./resources/quiz ./medicalpark2024/
 cp ./3dmodels/1_heart/asset1.glb ./medicalpark2024/assets/
 cp ./3dmodels/2_lungs/asset2.glb ./medicalpark2024/assets/
 cp ./3dmodels/3_stomach/asset3.glb ./medicalpark2024/assets/

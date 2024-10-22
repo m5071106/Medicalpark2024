@@ -85,6 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const answersContainer = document.getElementById("answersContainer");
     const progressBar = document.getElementById("progress");
     const imagesContainer = document.getElementById("imagesContainer");
+    const okSound = new Audio("sound/ok.mp3");
+    const ngSound = new Audio("sound/ng.mp3");
 
     // 問題順をシャッフルするための関数
     function shuffle(array) {
@@ -183,12 +185,16 @@ document.addEventListener("DOMContentLoaded", function () {
             // mod
             // score += 4;
             if (document.getElementById("remainTime").innerText > 0) {
+                okSound.currentTime = 0;
+                okSound.play();
                 score += 100 / questions.length;
                 // mod
                 optionButton.classList.remove("btn-outline-primary");
                 optionButton.classList.add("btn-success");
             }
         } else {
+            ngSound.currentTime = 0;
+            ngSound.play();
             optionButton.classList.remove("btn-outline-primary");
             optionButton.classList.add("btn-danger");
         }
