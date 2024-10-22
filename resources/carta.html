@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.0.7/aframe/build/aframe-ar.js"></script>
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+        <style>
+            #overlay1 {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 16pt;
+            }
+            #overlay2 {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                background-color: rgba(255, 255, 200, 0.8);
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 16pt;
+                color: blue;
+            }
+        </style>
+    </head>
+
+    <body style="margin: 0; overflow: hidden;">
+        <a-scene
+            vr-mode-ui="enabled: false;"
+            loading-screen="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+            id="scene"
+            embedded
+            gesture-detector
+        >
+            <!-- assets ST -->
+            <a-assets>
+                <a-asset-item
+                    id="asset1"
+                    src="assets/asset1.gltf"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset2"
+                    src="assets/asset2.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset3"
+                    src="assets/asset3.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset4"
+                    src="assets/asset4.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset5"
+                    src="assets/asset5.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset6"
+                    src="assets/asset6.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset7"
+                    src="assets/asset7.glb"
+                ></a-asset-item>
+                <a-asset-item
+                    id="asset8"
+                    src="assets/asset8.glb"
+                ></a-asset-item>
+            </a-assets>
+            <!-- assets ED -->
+
+            <!-- 1 ST -->
+            <a-marker
+                id="id1"
+                type="pattern"
+                preset="custom"
+                url="assets/asset1.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id1-1"
+                    scale="2.5 2.5 2.5"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset1"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 1 ED -->
+
+            <!-- 2 ST -->
+            <a-marker
+                id="id2"
+                type="pattern"
+                preset="custom"
+                url="assets/asset2.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id2-1"
+                    scale="1.0 1.0 1.0"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset2"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 2 ED -->
+
+            <!-- 3 ST -->
+            <a-marker
+                id="id3"
+                type="pattern"
+                preset="custom"
+                url="assets/asset3.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id3-1"
+                    scale="0.01 0.01 0.01"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset3"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 3 ED -->
+
+            <!-- 4 ST -->
+            <a-marker
+                id="id4"
+                type="pattern"
+                preset="custom"
+                url="assets/asset4.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id4-1"
+                    scale="0.1 0.1 0.1"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset4"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 4 ED -->
+
+            <!-- 5 ST -->
+            <a-marker
+                id="id5"
+                type="pattern"
+                preset="custom"
+                url="assets/asset5.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id5-1"
+                    scale="0.1 0.1 0.1"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset5"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 5 ED -->
+
+            <!-- 6 ST -->
+            <a-marker
+                id="id6"
+                type="pattern"
+                preset="custom"
+                url="assets/asset6.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id6-1"
+                    scale="0.5 0.5 0.5"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset6"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 6 ED -->
+
+            <!-- 7 ST -->
+            <a-marker
+                id="id7"
+                type="pattern"
+                preset="custom"
+                url="assets/asset7.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id7-1"
+                    scale="0.5 0.5 0.5"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset7"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 7 ED -->
+
+            <!-- 8 ST -->
+            <a-marker
+                id="id8"
+                type="pattern"
+                preset="custom"
+                url="assets/asset8.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id8-1"
+                    scale="0.5 0.5 0.5"
+                    position="0 0 0"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#asset8"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- 8 ED -->
+
+            <a-entity camera></a-entity>
+        </a-scene>
+        <div id="overlay2">
+            <label id="stamp">カメラをつかうよ！OKをおしてね！</label>
+        </div>
+        <div id="overlay1">
+            <label id="messagelabel">
+                <table>
+                    <tr>
+                        <td><img src="./img/ojigi.jpeg" height="50px"/></td>
+                        <td>きどうするまでちょっとまってね</td>
+                    </tr>
+                </table>
+            </label>
+        </div>
+        <script>
+            const markers = document.querySelectorAll('a-marker');
+            const label1 = document.querySelector('#overlay1');
+            const label2 = document.querySelector('#overlay2');
+            var msg1 = "";
+            var msg2 = ""; 
+            markers.forEach(marker => {
+                marker.addEventListener('markerFound', () => {
+                    const markerId = marker.getAttribute('id');
+                    msg1 = "";
+                    msg2 = "";
+                    switch(markerId) {
+                        case "id1":
+                            msg1 = "えいよう や さんそ を からだ に おくる\n";
+                            msg2 = "しんぞう（心臓）";
+                            break;
+                        case "id2":
+                            msg1 = "さんそ と にさんかたんそ を いれかえる\n";
+                            msg2 = "はい（肺）";
+                            break;
+                        case "id3":
+                            msg1 = "たべもの を おかゆ みたいに ドロドロに する\n";
+                            msg2 = "い（胃）";
+                            break;
+                        case "id4":
+                            msg1 = "たべもの から えいよう を もらう\n";
+                            msg2 = "小ちょう（小腸）";
+                            break;
+                        case "id5":
+                            msg1 = "うんち を つくる\n";
+                            msg2 = "大ちょう（大腸）";
+                            break;
+                        case "id6":
+                            msg1 = "からだ の なかで とても おおきな ぞうき\n";
+                            msg2 = "かんぞう（肝臓）";
+                            break;
+                        case "id7":
+                            msg1 = "たべもの を こわす しょうかえき を つくる\n";
+                            msg2 = "すいぞう（膵臓）";
+                            break;
+                        case "id8":
+                            msg1 = "おしっこ を つくる\n";
+                            msg2 = "じんぞう（腎臓）";
+                            break;
+                        default:
+                            msg1 = "\n";
+                            msg2 = "default";
+                            break;
+                    }
+                    label1.textContent = msg1;
+                    label2.textContent = msg2;
+                });
+
+                marker.addEventListener('markerLost', () => {
+                    label1.textContent = "";
+                    label2.textContent = "";
+                });
+            });
+        </script>
+    </body>
+</html>
+
