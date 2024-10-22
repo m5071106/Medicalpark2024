@@ -26,9 +26,9 @@ cp ./resources/index.html ./medicalpark2024/
 rm -f medicalpark2024.zip
 zip -r medicalpark2024.zip ./medicalpark2024/
 echo "copy resources to server..."
-scp -i ../../Ssl/arvr/arvrsvr.pem medicalpark2024.zip opc@158.101.140.36:~/fileio/
+scp -i ../../../Ssl/arvr/arvrsvr.pem medicalpark2024.zip opc@158.101.140.36:~/fileio/
 echo "Resources updated."
-ssh -i ../../Ssl/arvr/arvrsvr.pem opc@158.101.140.36
+ssh -i ../../../Ssl/arvr/arvrsvr.pem opc@158.101.140.36
 # after login to server
 # sudo su
 # cd fileio
