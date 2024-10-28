@@ -1,6 +1,5 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    // クイズの問題と選択肢 (Excelで作成し, Python自動生成)
     const questions = [
         {
             question: "次の４つの中で一番大きな臓器はどれ？",
@@ -72,6 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const numOfQuiz = 5;
 
     let currentQuestionIndex = 0;
+    let currentOptionName = "";
+    let currentOptionButton = null;
     let score = 0;
     let isInit = true;
     let username = "名無し";
@@ -87,6 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const ngSound = new Audio("sound/ng.mp3");
     const nameinputContainer = document.getElementById("nameinput-container");
     const quizContainer = document.getElementById("quiz-container");
+    const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));//timeはミリ秒
+    const answerOkContainer = document.getElementById("answerOkContainer");
+    const answerNGContainer = document.getElementById("answerNGContainer");
+    const timeoverContainer = document.getElementById("timeoverContainer");
 
     // 問題順をシャッフルするための関数
     function shuffle(array) {
@@ -112,10 +117,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentQuestion = questions[currentQuestionIndex];
         questionContainer.textContent = currentQuestion.question;
 
-        // 選択肢シャッフルは行わない(画像と位置を合わせるため)
-        // del
-        // shuffle(currentQuestion.options);
-        // del
+        // 画像一覧を生成
+        imagesContainer.innerHTML = "";
+        currentQuestion.images.forEach((image) => {
+            const imageElement = document.createElement("img");
+            imageElement.src = image;
+            imageElement.classList.add("img-fluid", "mb-3");
+            imageElement.style.width = "200px";
+            imageElement.style.height = "200px";
+            imagesContainer.appendChild(imageElement);
+        });
 
         // 選択肢のボタンを生成
         optionsContainer.innerHTML = "";
@@ -139,80 +150,58 @@ document.addEventListener("DOMContentLoaded", function () {
             i++;
         });
 
-        // add
-        // 画像一覧を生成
-        imagesContainer.innerHTML = "";
-        currentQuestion.images.forEach((image) => {
-            const imageElement = document.createElement("img");
-            imageElement.src = image;
-            imageElement.classList.add("img-fluid", "mb-3");
-            imageElement.style.width = "200px";
-            imageElement.style.height = "200px";
-            imagesContainer.appendChild(imageElement);
-        });
-        // add
-
         // 現在の問題番号をプログレスバーに反映
         updateProgressBar();
         nextButton.disabled = true;
 
-        // add
         // 現在の問題番号を表示する
         document.getElementById("questionNumber").textContent = `問題 ${currentQuestionIndex + 1} / ${numOfQuiz}`;
         // 問題開始とともにカウントダウンを開始
         clearInterval(countdownInterval);
         setRedirectInfo("#", countsPerQuestion);
-        // add
-
     }
 
     // 選択肢をクリックしたときの処理
     function selectOption(optionButton, selectedOption) {
-        const currentQuestion = questions[currentQuestionIndex];
-        
-        // add
-        // 選択肢クリック時、カウントダウンを停止
-        document.getElementById("countContainer").style.display = "none";
-
-        // 時間切れとなった時はアラートを表示し、点数も加算しない
-        if (document.getElementById("remainTime").innerText == 0) {
-            optionButton.classList.remove("btn-outline-primary");
-            optionButton.classList.add("btn-danger");
-        }
-        else 
-        // add
-        if (selectedOption === currentQuestion.answer) {
-            // mod
-            // score += 4;
-            if (document.getElementById("remainTime").innerText > 0) {
-                okSound.currentTime = 0;
-                okSound.play();
-                score += 100 / numOfQuiz;
-                // mod
-                optionButton.classList.remove("btn-outline-primary");
-                optionButton.classList.add("btn-success");
-            }
-        } else {
-            ngSound.currentTime = 0;
-            ngSound.play();
-            optionButton.classList.remove("btn-outline-primary");
-            optionButton.classList.add("btn-danger");
-        }
-        scoreDisplay.textContent = `${username}さんのスコア: ${Math.round(score)}`;
-        disableOptions();
+        // 選択している選択肢の色を変更
+        const optionButtons = document.querySelectorAll(".option");
+        optionButtons.forEach((button) => {
+            button.classList.remove("optionSelected");
+            button.classList.add("btn", "btn-outline-primary", "option");
+        });
+        optionButton.classList.add("optionSelected");
+        currentOptionName = optionButton.textContent;
+        currentOptionButton = optionButton;
         nextButton.disabled = false;
     }
 
-    // 選択肢クリック後、押せなくする処理
-    function disableOptions() {
-        const buttons = document.querySelectorAll(".option");
-        buttons.forEach((button) => {
-            button.disabled = true;
-        });
-    }
-
     // 次へボタンを押したときの処理
-    nextButton.addEventListener("click", () => {
+    nextButton.addEventListener("click", async () => {
+        currentOptionButton.classList.remove("optionSelected","btn-outline-primary");
+        if(document.getElementById("remainTime").innerText == 0) {
+            // 時間切れのためスコア加算なし
+            currentOptionButton.classList.add("optionNG");
+            timeoverContainer.style.display = "block";
+            await sleep(1000);
+            timeoverContainer.style.display = "none";
+        }else if(currentOptionName === questions[currentQuestionIndex].answer) {
+            okSound.currentTime = 0;
+            okSound.play();
+            score += 100 / numOfQuiz;
+            currentOptionButton.classList.add("optionOK");
+            answerOkContainer.style.display = "block";
+            await sleep(1000);
+            answerOkContainer.style.display = "none";
+        }else {
+            ngSound.currentTime = 0;
+            ngSound.play();
+            currentOptionButton.classList.add("optionNG");
+            answerNGContainer.style.display = "block";
+            await sleep(1000);
+            answerNGContainer.style.display = "none";
+        }
+        scoreDisplay.textContent = `${username}さんのスコア: ${Math.round(score)}`;
+
         currentQuestionIndex++;
         if (currentQuestionIndex < numOfQuiz) {
             document.getElementById("countContainer").style.display = "block";
@@ -220,9 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             displayScore();
             displayAnswers();
-            // add
             updateProgressBar();
-            // add
         }
         document.getElementById("messageContainer").innerHTML = "";
         document.getElementById("remainTime").style.color = "black";
@@ -234,12 +221,10 @@ document.addEventListener("DOMContentLoaded", function () {
         optionsContainer.innerHTML = "";
         nextButton.style.display = "none";
         scoreDisplay.textContent = `${username}さんのスコアは ${Math.round(score)} / 100 です。`;
-        // add
         document.getElementById("countContainer").style.display = "none";
         document.getElementById("imagesContainer").style.display = "none";
         document.getElementById("questionNumber").textContent = "";
         document.getElementById("qrContainer").style.display = "none";
-        // add
     }
 
     // 解説を表示する
@@ -255,15 +240,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 answersContainer.appendChild(answerDiv);
             }
         });
-        // add
         document.getElementById("questionNumber").textContent = `お疲れ様でした！`;
         document.getElementById("remainTime").textContent = "";
-        // add
     }
 
     // 初回処理 (全体問題のシャッフルと最初の問題の表示)
     shuffle(questions);
     displayQuestion();
+    answerOkContainer.style.display = "none";
+    answerNGContainer.style.display = "none";
+    timeoverContainer.style.display = "none";
 
     if(isInit) {
         document.getElementById("startQuizButton").addEventListener("click", () =>

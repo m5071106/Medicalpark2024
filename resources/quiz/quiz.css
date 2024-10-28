@@ -24,8 +24,28 @@ body {
   .option {
     margin: 5px 0;
     font-size: 20pt;
+    background-color: white;
   }
-  .progress {
+  .optionSelected {
+    margin: 5px 0;
+    font-size: 20pt;
+    background-color: yellow;
+  }
+  .optionOK {
+    margin: 5px 0;
+    font-size: 20pt;
+    background-color: green;
+    outline: palegreen;
+    color: white;
+  }
+  .optionNG {
+    margin: 5px 0;
+    font-size: 20pt;
+    background-color: red;
+    outline: orange;
+    color: white;
+  }
+   .progress {
     height: 20px;
   }
   .btn {
