@@ -6,7 +6,7 @@ import openpyxl
 debug_mode = False
 
 # 古い資産を削除
-js_path = os.path.dirname(__file__) + '/quiz_test.js'
+js_path = os.path.dirname(__file__) + '/quiz.js'
 
 if os.path.exists(js_path):
     os.remove(js_path) 
@@ -21,6 +21,12 @@ rows = sheet.iter_rows(min_row=1, max_row=sheet.max_row, min_col=1, max_col=6, v
 data = []
 for row in rows:
     data.append(row)
+
+# 設定シートから問題数とカウントダウン時間を取得
+sheet = wb["設定"]
+numOfQuiz = sheet['B1'].value
+countsPerQuestion = sheet['B2'].value
+
 # excelを閉じる
 wb.close()
 
@@ -55,14 +61,19 @@ if question_data.endswith(",\n"):
 
 scripts += question_data
 
-scripts += '''
+scripts += f'''
     ];
 
+    let countsPerQuestion = {countsPerQuestion};
+    const numOfQuiz = {numOfQuiz};
+'''
+
+scripts += '''
     let currentQuestionIndex = 0;
     let score = 0;
     let isInit = true;
     let username = "名無し";
-
+    
     const questionContainer = document.getElementById("questionContainer");
     const optionsContainer = document.getElementById("optionsContainer");
     const nextButton = document.getElementById("nextButton");
@@ -86,10 +97,10 @@ scripts += '''
     // クイズの進捗具合をプログレスバーで表示するための関数
     function updateProgressBar() {
         var progress;
-        if (currentQuestionIndex == questions.length) {
-            progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+        if (currentQuestionIndex == numOfQuiz) {
+            progress = ((currentQuestionIndex + 1) / numOfQuiz) * 100;
         } else {
-            progress = ((currentQuestionIndex) / questions.length) * 100;
+            progress = ((currentQuestionIndex) / numOfQuiz) * 100;
         }
         progressBar.style.width = `${progress}%`;
     }
@@ -145,10 +156,10 @@ scripts += '''
 
         // add
         // 現在の問題番号を表示する
-        document.getElementById("questionNumber").textContent = `問題 ${currentQuestionIndex + 1} / ${questions.length}`;
+        document.getElementById("questionNumber").textContent = `問題 ${currentQuestionIndex + 1} / ${numOfQuiz}`;
         // 問題開始とともにカウントダウンを開始
         clearInterval(countdownInterval);
-        setRedirectInfo("#", 30);
+        setRedirectInfo("#", countsPerQuestion);
         // add
 
     }
@@ -174,7 +185,7 @@ scripts += '''
             if (document.getElementById("remainTime").innerText > 0) {
                 okSound.currentTime = 0;
                 okSound.play();
-                score += 100 / questions.length;
+                score += 100 / numOfQuiz;
                 // mod
                 optionButton.classList.remove("btn-outline-primary");
                 optionButton.classList.add("btn-success");
@@ -201,7 +212,7 @@ scripts += '''
     // 次へボタンを押したときの処理
     nextButton.addEventListener("click", () => {
         currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
+        if (currentQuestionIndex < numOfQuiz) {
             document.getElementById("countContainer").style.display = "block";
             displayQuestion();
         } else {
@@ -238,7 +249,9 @@ scripts += '''
             answerDiv.innerHTML = `<strong>質問 ${index + 1}:</strong> ${question.question}
                                    <strong>正解:</strong> ${question.answer}<br>
                                    <strong>解説:</strong> ${question.explanation}`;
-            answersContainer.appendChild(answerDiv);
+            if(index < numOfQuiz) {
+                answersContainer.appendChild(answerDiv);
+            }
         });
         // add
         document.getElementById("questionNumber").textContent = `お疲れ様でした！`;
@@ -270,9 +283,9 @@ scripts += '''
         isInit = false;
         quizContainer.style.display = "block";
         nameinputContainer.style.display = "none";
-        if (document.getElementById("username").value != "") {
-            username = document.getElementById("username").value;
-        }
+        username = document.getElementById("username").value;
+        clearInterval(countdownInterval);
+        setRedirectInfo("#", countsPerQuestion);
     }
 });
 
@@ -288,13 +301,15 @@ function setRedirectInfo(url, time) {
             countdown--;
             document.getElementById("remainTime").innerText = countdown;
 
-            if (countdown <= 10) {
+            if (countdown <= 10 &&
+                    document.getElementById("quiz-container").style.display != "none") {
                 document.getElementById("remainTime").style.color = "red";
             }
 
             if (countdown <= 0) {
                 clearInterval(countdownInterval);
-                if (document.getElementById("countContainer").style.display != "none") {
+                if (document.getElementById("countContainer").style.display != "none" &&
+                        document.getElementById("quiz-container").style.display != "none") {
                     document.getElementById("messageContainer").innerHTML = "時間切れです。";
                 }
             }

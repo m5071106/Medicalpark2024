@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     // クイズの問題と選択肢 (Excelで作成し, Python自動生成)
     const questions = [
@@ -6,80 +7,75 @@ document.addEventListener("DOMContentLoaded", function () {
             images: ["images/total.png"],
             options: ["肺", "心臓", "肝臓", "膵臓"],
             answer: "肝臓",
-            explanation:
-                "これらの4つの臓器の中で最も大きいのは「肝臓」です。\n成人の肝臓は、体重の約2〜3%を占め、1.2〜1.5 kgほどの重さがあります。\n肺も大きい臓器ですが、肝臓の方が重さや体積の点で大きいとされています。",
+            explanation: "これらの4つの臓器の中で最も大きいのは「肝臓」です。\n成人の肝臓は、体重の約2〜3%を占め、1.2〜1.5 kgほどの重さがあります。\n肺も大きい臓器ですが、肝臓の方が重さや体積の点で大きいとされています。",
         },
         {
             question: "膵臓の前にある臓器はどれですか？",
             images: ["images/stomach.png", "images/heart.png", "images/liver.png", "images/lung.png"],
             options: ["胃", "心臓", "肝臓", "肺"],
             answer: "胃",
-            explanation:
-                "膵臓（すいぞう）の前に位置する主な臓器は「胃」です。膵臓は、腹部の深部にあり、胃の後ろに位置しています。\nまた、膵臓の前には「小腸」や「大腸」の一部も存在しますが、直接的に膵臓の前にある主要な臓器は胃です。",
+            explanation: "膵臓（すいぞう）の前に位置する主な臓器は「胃」です。膵臓は、腹部の深部にあり、胃の後ろに位置しています。\nまた、膵臓の前には「小腸」や「大腸」の一部も存在しますが、直接的に膵臓の前にある主要な臓器は胃です。",
         },
         {
             question: "次のうち、消化器官でないものはどれ？",
             images: ["images/pancreas.png", "images/liver.png", "images/heart.png", "images/lung.png"],
             options: ["膵臓", "肝臓", "心臓", "肺"],
             answer: "心臓",
-            explanation:
-                "消化器官とは、食べ物を消化し、栄養を吸収するための器官のことです。\n心臓は、体内の血液を送り出すための器官であり、消化器官ではありません。\n膵臓、肝臓、肺は、それぞれ消化器官の一部です。",
+            explanation: "消化器官とは、食べ物を消化し、栄養を吸収するための器官のことです。\n心臓は、体内の血液を送り出すための器官であり、消化器官ではありません。\n膵臓、肝臓、肺は、それぞれ消化器官の一部です。",
         },
         {
             question: "次のうち、呼吸器官でないものはどれ？",
             images: ["images/lung.png", "images/heart.png"],
             options: ["肺", "心臓"],
             answer: "心臓",
-            explanation:
-                "呼吸器官とは、酸素を取り入れ、二酸化炭素を排出するための器官のことです。\n心臓は、体内の血液を送り出すための器官であり、呼吸器官ではありません。\n肺は、呼吸器官の一部であり、酸素を取り入れるための重要な器官です。",
+            explanation: "呼吸器官とは、酸素を取り入れ、二酸化炭素を排出するための器官のことです。\n心臓は、体内の血液を送り出すための器官であり、呼吸器官ではありません。\n肺は、呼吸器官の一部であり、酸素を取り入れるための重要な器官です。",
         },
         {
             question: "次のうち、循環器官でないものはどれ？",
             images: ["images/heart.png", "images/liver.png"],
             options: ["心臓", "肝臓"],
             answer: "肝臓",
-            explanation:
-                "循環器官とは、体内の血液を送り出すための器官のことです。\n心臓は、体内の血液を送り出すための重要な器官であり、循環器官の一部です。\n肝臓は、体内の代謝を調節する臓器であり、循環器官ではありません。",
+            explanation: "循環器官とは、体内の血液を送り出すための器官のことです。\n心臓は、体内の血液を送り出すための重要な器官であり、循環器官の一部です。\n肝臓は、体内の代謝を調節する臓器であり、循環器官ではありません。",
         },
         {
             question: "次のうち、内分泌器官でないものはどれ？",
             images: ["images/pancreas.png", "images/liver.png"],
             options: ["膵臓", "肝臓"],
             answer: "肝臓",
-            explanation:
-                "内分泌器官とは、ホルモンを分泌するための器官のことです。\n膵臓は、インスリンやグルカゴンなどのホルモンを分泌する内分泌器官です。\n肝臓は、体内の代謝を調節する臓器であり、内分泌器官ではありません。",
+            explanation: "内分泌器官とは、ホルモンを分泌するための器官のことです。\n膵臓は、インスリンやグルカゴンなどのホルモンを分泌する内分泌器官です。\n肝臓は、体内の代謝を調節する臓器であり、内分泌器官ではありません。",
         },
         {
             question: "次のうち、免疫器官でないものはどれ？",
             images: ["images/spleen.png", "images/liver.png"],
             options: ["脾臓", "肝臓"],
             answer: "肝臓",
-            explanation:
-                "免疫器官とは、体内の免疫反応を調節するための器官のことです。\n脾臓は、体内の免疫反応を調節する重要な器官であり、免疫器官の一部です。\n肝臓は、体内の代謝を調節する臓器であり、免疫器官ではありません。",
+            explanation: "免疫器官とは、体内の免疫反応を調節するための器官のことです。\n脾臓は、体内の免疫反応を調節する重要な器官であり、免疫器官の一部です。\n肝臓は、体内の代謝を調節する臓器であり、免疫器官ではありません。",
         },
         {
             question: "次のうち、排泄器官でないものはどれ？",
             images: ["images/kidney.png", "images/liver.png"],
             options: ["腎臓", "肝臓"],
             answer: "肝臓",
-            explanation:
-                "排泄器官とは、体内の老廃物を排出するための器官のことです。\n腎臓は、体内の老廃物を尿として排出する排泄器官であり、重要な器官です。\n肝臓は、体内の代謝を調節する臓器であり、排泄器官ではありません。",
+            explanation: "排泄器官とは、体内の老廃物を排出するための器官のことです。\n腎臓は、体内の老廃物を尿として排出する排泄器官であり、重要な器官です。\n肝臓は、体内の代謝を調節する臓器であり、排泄器官ではありません。",
         },
         {
             question: "次の4つの臓器の中で、もっとも上にある臓器はどれ？",
             images: ["images/total.png"],
             options: ["肺", "心臓", "肝臓", "膵臓"],
             answer: "肺",
-            explanation:
-                "これらの4つの臓器の中で、もっとも上にあるのは「肺」です。\n肺は、呼吸器官の一部であり、胸腔の上部に位置しています。\n心臓や肝臓、膵臓は、肺よりも下に位置している臓器です。",
+            explanation: "これらの4つの臓器の中で、もっとも上にあるのは「肺」です。\n肺は、呼吸器官の一部であり、胸腔の上部に位置しています。\n心臓や肝臓、膵臓は、肺よりも下に位置している臓器です。",
         }
+
     ];
+
+    let countsPerQuestion = 60;
+    const numOfQuiz = 5;
 
     let currentQuestionIndex = 0;
     let score = 0;
     let isInit = true;
     let username = "名無し";
-
+    
     const questionContainer = document.getElementById("questionContainer");
     const optionsContainer = document.getElementById("optionsContainer");
     const nextButton = document.getElementById("nextButton");
@@ -103,10 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // クイズの進捗具合をプログレスバーで表示するための関数
     function updateProgressBar() {
         var progress;
-        if (currentQuestionIndex == questions.length) {
-            progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+        if (currentQuestionIndex == numOfQuiz) {
+            progress = ((currentQuestionIndex + 1) / numOfQuiz) * 100;
         } else {
-            progress = ((currentQuestionIndex) / questions.length) * 100;
+            progress = ((currentQuestionIndex) / numOfQuiz) * 100;
         }
         progressBar.style.width = `${progress}%`;
     }
@@ -162,10 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // add
         // 現在の問題番号を表示する
-        document.getElementById("questionNumber").textContent = `問題 ${currentQuestionIndex + 1} / ${questions.length}`;
+        document.getElementById("questionNumber").textContent = `問題 ${currentQuestionIndex + 1} / ${numOfQuiz}`;
         // 問題開始とともにカウントダウンを開始
         clearInterval(countdownInterval);
-        setRedirectInfo("#", 30);
+        setRedirectInfo("#", countsPerQuestion);
         // add
 
     }
@@ -191,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (document.getElementById("remainTime").innerText > 0) {
                 okSound.currentTime = 0;
                 okSound.play();
-                score += 100 / questions.length;
+                score += 100 / numOfQuiz;
                 // mod
                 optionButton.classList.remove("btn-outline-primary");
                 optionButton.classList.add("btn-success");
@@ -218,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 次へボタンを押したときの処理
     nextButton.addEventListener("click", () => {
         currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
+        if (currentQuestionIndex < numOfQuiz) {
             document.getElementById("countContainer").style.display = "block";
             displayQuestion();
         } else {
@@ -255,7 +251,9 @@ document.addEventListener("DOMContentLoaded", function () {
             answerDiv.innerHTML = `<strong>質問 ${index + 1}:</strong> ${question.question}
                                    <strong>正解:</strong> ${question.answer}<br>
                                    <strong>解説:</strong> ${question.explanation}`;
-            answersContainer.appendChild(answerDiv);
+            if(index < numOfQuiz) {
+                answersContainer.appendChild(answerDiv);
+            }
         });
         // add
         document.getElementById("questionNumber").textContent = `お疲れ様でした！`;
@@ -287,9 +285,9 @@ document.addEventListener("DOMContentLoaded", function () {
         isInit = false;
         quizContainer.style.display = "block";
         nameinputContainer.style.display = "none";
-        if (document.getElementById("username").value != "") {
-            username = document.getElementById("username").value;
-        }
+        username = document.getElementById("username").value;
+        clearInterval(countdownInterval);
+        setRedirectInfo("#", countsPerQuestion);
     }
 });
 
@@ -305,13 +303,15 @@ function setRedirectInfo(url, time) {
             countdown--;
             document.getElementById("remainTime").innerText = countdown;
 
-            if (countdown <= 10) {
+            if (countdown <= 10 &&
+                    document.getElementById("quiz-container").style.display != "none") {
                 document.getElementById("remainTime").style.color = "red";
             }
 
             if (countdown <= 0) {
                 clearInterval(countdownInterval);
-                if (document.getElementById("countContainer").style.display != "none") {
+                if (document.getElementById("countContainer").style.display != "none" &&
+                        document.getElementById("quiz-container").style.display != "none") {
                     document.getElementById("messageContainer").innerHTML = "時間切れです。";
                 }
             }
