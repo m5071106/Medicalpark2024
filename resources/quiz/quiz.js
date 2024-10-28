@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let currentQuestionIndex = 0;
     let score = 0;
+    let isInit = true;
+    let username = "名無し";
 
     const questionContainer = document.getElementById("questionContainer");
     const optionsContainer = document.getElementById("optionsContainer");
@@ -87,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const imagesContainer = document.getElementById("imagesContainer");
     const okSound = new Audio("sound/ok.mp3");
     const ngSound = new Audio("sound/ng.mp3");
+    const nameinputContainer = document.getElementById("nameinput-container");
+    const quizContainer = document.getElementById("quiz-container");
 
     // 問題順をシャッフルするための関数
     function shuffle(array) {
@@ -198,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
             optionButton.classList.remove("btn-outline-primary");
             optionButton.classList.add("btn-danger");
         }
-        scoreDisplay.textContent = `現在のスコア: ${Math.round(score)}`;
+        scoreDisplay.textContent = `${username}さんのスコア: ${Math.round(score)}`;
         disableOptions();
         nextButton.disabled = false;
     }
@@ -233,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
         questionContainer.textContent = "";
         optionsContainer.innerHTML = "";
         nextButton.style.display = "none";
-        scoreDisplay.textContent = `あなたのスコアは ${Math.round(score)} / 100 です。`;
+        scoreDisplay.textContent = `${username}さんのスコアは ${Math.round(score)} / 100 です。`;
         // add
         document.getElementById("countContainer").style.display = "none";
         document.getElementById("imagesContainer").style.display = "none";
@@ -263,6 +267,30 @@ document.addEventListener("DOMContentLoaded", function () {
     shuffle(questions);
     displayQuestion();
 
+    if(isInit) {
+        document.getElementById("startQuizButton").addEventListener("click", () =>
+            startQuiz()
+        );
+        quizContainer.style.display = "none";
+        nameinputContainer.style.display = "block";
+    }else {
+        quizContainer.style.display = "block";
+        nameinputContainer.style.display = "none";
+    }    
+
+    // クイズをはじめるボタンクリック時の処理
+    function startQuiz() {
+        if (document.getElementById("username").value == "") {
+            alert("名前を入力してください");
+            return;
+        }
+        isInit = false;
+        quizContainer.style.display = "block";
+        nameinputContainer.style.display = "none";
+        if (document.getElementById("username").value != "") {
+            username = document.getElementById("username").value;
+        }
+    }
 });
 
 // カウントダウン関数はグローバル領域に定義する
@@ -292,4 +320,3 @@ function setRedirectInfo(url, time) {
         alert("正しいURLと時間を入力してください");
     }
 }
-
