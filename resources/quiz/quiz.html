@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ARアプリはこちらから</title>
+    <title>AR臓器クイズゲーム</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -33,18 +33,29 @@
             </script>
           </li>
         </ol>
-        <ul>
-          <li class="breadcrumb">
-            <img src="images/run_ar.png" alt="ARアプリの起動" style="width: 160px; height: 160px;">
-          </li>
-        </ul>
       </div>
     </nav>
     <!-- add -->
     <div id="nameinput-container" class="quiz-container">
-      <label for="username">名前を入力してください:</label>
-      <input type="text" id="username" name="username" class="username" /><br />
-      <button id="startQuizButton" class="btn btn-primary mt-3">クイズを始める</button>
+      <table>
+        <tr>
+          <td><img src="images/run_ar.png" alt="quiz" style="width: 160px; height: 160px;"></td>
+          <td>
+            <label for="username">名前を入力してください:</label>
+            <input type="text" id="username" name="username" class="username" /><br />
+          </td>
+          <td>
+            <button id="startQuizButton" class="btn btn-primary mt-3">クイズを始める</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            ARアプリ起動
+          </td>
+          <td>  </td>
+          <td>  </td>
+        </tr>
+      </table>
     </div>
     <!-- add -->
     <div id="quiz-container" class="quiz-container">
