@@ -135,10 +135,16 @@ with open(index_html_path, 'a') as f:
     f.write(body_2)
 
 count = 0
+option = ''
 body_3 = ''
 for asset in assets:
     asset_name = asset.split('.')[0]
     count += 1
+    if asset_name == 'asseta':
+        option = '-'
+    else:
+        option = ''
+
     body_3 += f'''
             <!-- {asset_name} ST -->
             <a-marker
@@ -154,7 +160,7 @@ for asset in assets:
                     id="id-{asset_name}-1"
                     scale="4.0 4.0 4.0"
                     position="0 0 0"
-                    rotation="180 90 -90"
+                    rotation="180 {option}90 -90"
                     animation-mixer="loop: repeat"
                     gltf-model="#{asset_name}"
                     class="clickable"
