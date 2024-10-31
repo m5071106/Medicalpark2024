@@ -88,7 +88,7 @@ header += '''
     </head>
     '''
 
-with open(index_html_path, 'w') as f:
+with open(index_html_path, 'w', encoding='utf-8') as f:
     f.write(header)
 
 body_1 = '''
@@ -104,7 +104,7 @@ body_1 = '''
         >
     '''
 
-with open(index_html_path, 'a') as f:
+with open(index_html_path, 'a', encoding='utf-8') as f:
     f.write(body_1)
 
 # assetsディレクトリの中身から拡張子がpattで終わる一覧を取得. アルファベット順にソートする
@@ -131,7 +131,7 @@ body_2 += '''
             <!-- assets ED -->
     '''
 
-with open(index_html_path, 'a') as f:
+with open(index_html_path, 'a', encoding='utf-8') as f:
     f.write(body_2)
 
 count = 0
@@ -171,7 +171,7 @@ for asset in assets:
             <!-- {asset_name} ED -->
         '''
 
-with open(index_html_path, 'a') as f:
+with open(index_html_path, 'a', encoding='utf-8') as f:
     f.write(body_3)
 
 body_4 = '''
@@ -228,7 +228,7 @@ body_4 += '''
     '''
 
 # word_list.csv を読み込む
-with open(os.path.dirname(__file__) + '/word_list.csv', 'r') as f:
+with open(os.path.dirname(__file__) + '/word_list.csv', 'r', encoding='utf-8') as f:
     reader = csv.reader(f)
     for row in reader:
         body_4 += f'''
@@ -271,5 +271,5 @@ body_4 += '''
 </html>
     '''
 
-with open(index_html_path, 'a') as f:
+with open(index_html_path, 'a', encoding='utf-8') as f:
     f.write(body_4)
