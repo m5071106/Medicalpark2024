@@ -2,67 +2,88 @@
 document.addEventListener("DOMContentLoaded", function () {
     const questions = [
         {
-            question: "次の４つの中で一番大きな臓器はどれ？",
-            images: ["images/total.png"],
-            options: ["肺", "心臓", "肝臓", "膵臓"],
-            answer: "肝臓",
-            explanation: "これらの4つの臓器の中で最も大きいのは「肝臓」です。\n成人の肝臓は、体重の約2〜3%を占め、1.2〜1.5 kgほどの重さがあります。\n肺も大きい臓器ですが、肝臓の方が重さや体積の点で大きいとされています。",
+            question: "肺は左右に分かれ、さらに区域に分かれている。右肺はいくつの区域に分かれているか？",
+            images: ["images/stomach.png"],
+            options: ["１つ", "２つ", "３つ"],
+            answer: "３つ",
+            explanation: "肺は左右二つに大きく分かれているが、それぞれの肺はさらにいくつかの区域に分かれている。この区域を葉（よう）と呼んでいる。右の肺は3葉、左の肺は2葉に分けられる。",
         },
         {
-            question: "膵臓の前にある臓器はどれですか？",
-            images: ["images/stomach.png", "images/heart.png", "images/liver.png", "images/lung.png"],
-            options: ["胃", "心臓", "肝臓", "肺"],
-            answer: "胃",
-            explanation: "膵臓（すいぞう）の前に位置する主な臓器は「胃」です。膵臓は、腹部の深部にあり、胃の後ろに位置しています。\nまた、膵臓の前には「小腸」や「大腸」の一部も存在しますが、直接的に膵臓の前にある主要な臓器は胃です。",
+            question: "空気の通り道である気道と、食事の通り道である食道はどちらが身体の前に位置するか？",
+            images: ["images/stomach.png"],
+            options: ["食道", "気道", "公道"],
+            answer: "気道",
+            explanation: "空気の通り道である気道（気管支）が前面、食べ物の通り道である食道は気道よりも背面に位置し、気管支と接している。身体の中に「公道」と呼ばれる臓器はない。",
         },
         {
-            question: "次のうち、消化器官でないものはどれ？",
-            images: ["images/pancreas.png", "images/liver.png", "images/heart.png", "images/lung.png"],
-            options: ["膵臓", "肝臓", "心臓", "肺"],
-            answer: "心臓",
-            explanation: "消化器官とは、食べ物を消化し、栄養を吸収するための器官のことです。\n心臓は、体内の血液を送り出すための器官であり、消化器官ではありません。\n膵臓、肝臓、肺は、それぞれ消化器官の一部です。",
+            question: "心臓からは何本の血管が出ているか？",
+            images: ["images/stomach.png"],
+            options: ["４本", "６本", "８本"],
+            answer: "８本",
+            explanation: "心臓からは酸素を多く含む動脈血が流れる大動脈と４本の肺静脈、酸素が少ない静脈血が流れる上下２本の大静脈と肺動脈（後で左右に分かれるが心臓から出ているのは一本）の合計８本の血管が出ている。",
         },
         {
-            question: "次のうち、呼吸器官でないものはどれ？",
-            images: ["images/lung.png", "images/heart.png"],
-            options: ["肺", "心臓"],
-            answer: "心臓",
-            explanation: "呼吸器官とは、酸素を取り入れ、二酸化炭素を排出するための器官のことです。\n心臓は、体内の血液を送り出すための器官であり、呼吸器官ではありません。\n肺は、呼吸器官の一部であり、酸素を取り入れるための重要な器官です。",
+            question: "胃は人の正面から見てどちら側に膨らんでいるか？",
+            images: ["images/stomach.png"],
+            options: ["右", "真ん中", "左"],
+            answer: "左",
+            explanation: "胃は左側に偏って大きく膨らんでいる。食べた後すぐに横になるのはお勧めしないが、もし横になるなら左側を下にして横になると、食べ物が胃の膨らんだところに貯まって楽なことが多い。",
         },
         {
-            question: "次のうち、循環器官でないものはどれ？",
-            images: ["images/heart.png", "images/liver.png"],
-            options: ["心臓", "肝臓"],
-            answer: "肝臓",
-            explanation: "循環器官とは、体内の血液を送り出すための器官のことです。\n心臓は、体内の血液を送り出すための重要な器官であり、循環器官の一部です。\n肝臓は、体内の代謝を調節する臓器であり、循環器官ではありません。",
+            question: "大腸はお腹の中でぐるりと一周している。どちら向きで一周しているか？",
+            images: ["images/stomach.png"],
+            options: ["右回り", "左回り", "前回り"],
+            answer: "右回り",
+            explanation: "大腸は小腸で吸収できなかったもの、腸や腸内細菌の死骸などが送られてくる。お腹の右下から脇腹を上がり、お腹の前を右から左に横切り、左脇腹を下がっていく。水分を抜いて便の硬さを調節している。",
         },
         {
-            question: "次のうち、内分泌器官でないものはどれ？",
-            images: ["images/pancreas.png", "images/liver.png"],
-            options: ["膵臓", "肝臓"],
-            answer: "肝臓",
-            explanation: "内分泌器官とは、ホルモンを分泌するための器官のことです。\n膵臓は、インスリンやグルカゴンなどのホルモンを分泌する内分泌器官です。\n肝臓は、体内の代謝を調節する臓器であり、内分泌器官ではありません。",
+            question: "飲食物から摂取した水分はどこでもっとも吸収されるか？",
+            images: ["images/stomach.png"],
+            options: ["胃", "小腸", "大腸"],
+            answer: "小腸",
+            explanation: "身体に取りこまれた水分は約９０％が小腸で吸収されます。また小腸で水分が吸収されるとき、一緒に塩分や糖分があると吸収が促進されます。小腸での水分吸収が不十分だと下痢をおこしやすくなります。",
         },
         {
-            question: "次のうち、免疫器官でないものはどれ？",
-            images: ["images/spleen.png", "images/liver.png"],
-            options: ["脾臓", "肝臓"],
-            answer: "肝臓",
-            explanation: "免疫器官とは、体内の免疫反応を調節するための器官のことです。\n脾臓は、体内の免疫反応を調節する重要な器官であり、免疫器官の一部です。\n肝臓は、体内の代謝を調節する臓器であり、免疫器官ではありません。",
+            question: "尿をつくる腎臓はどんな形をしているか。",
+            images: ["images/stomach.png"],
+            options: ["エダマメ", "ソラマメ", "イチゴ"],
+            answer: "ソラマメ",
+            explanation: "腎臓はソラマメ型をした臓器で身体の後方に位置し、左右二つ存在する。右の腎臓は少し肝臓に押されて左の腎臓の位置よりも低い位置にある。",
         },
         {
-            question: "次のうち、排泄器官でないものはどれ？",
-            images: ["images/kidney.png", "images/liver.png"],
-            options: ["腎臓", "肝臓"],
-            answer: "肝臓",
-            explanation: "排泄器官とは、体内の老廃物を排出するための器官のことです。\n腎臓は、体内の老廃物を尿として排出する排泄器官であり、重要な器官です。\n肝臓は、体内の代謝を調節する臓器であり、排泄器官ではありません。",
+            question: "膵臓は胃の位置と比べてどこに位置するか？",
+            images: ["images/stomach.png"],
+            options: ["前", "右", "後"],
+            answer: "後",
+            explanation: "膵臓はオタマジャクシにも似た形で身体の中心、胃後方に位置する。中心部分が膨らんでおり（頭部）、身体の左側へと伸びて徐々に細くなる（尾部）。消化液（膵液）やホルモン（インスリン・グルカゴン）を分泌する。",
         },
         {
-            question: "次の4つの臓器の中で、もっとも上にある臓器はどれ？",
-            images: ["images/total.png"],
-            options: ["肺", "心臓", "肝臓", "膵臓"],
-            answer: "肺",
-            explanation: "これらの4つの臓器の中で、もっとも上にあるのは「肺」です。\n肺は、呼吸器官の一部であり、胸腔の上部に位置しています。\n心臓や肝臓、膵臓は、肺よりも下に位置している臓器です。",
+            question: "肝臓と管で繋がっている臓器はどれか？",
+            images: ["images/stomach.png"],
+            options: ["膵臓", "胆嚢", "小腸"],
+            answer: "胆嚢",
+            explanation: "肝臓でつくられた胆汁酸液が総肝管を通って胆嚢に移動し、胆汁として貯蔵される。胆汁はその後、総胆管を通って移動し、膵管と合流して十二指腸へと流れ込む。",
+        },
+        {
+            question: "血液中の古くなった赤血球を破壊する臓器はどれか？",
+            images: ["images/stomach.png"],
+            options: ["肝臓", "小腸", "脾臓"],
+            answer: "脾臓",
+            explanation: "脾臓は血液を貯えたり、古くなった赤血球を破壊したりします。脾臓に流れ込んだ血液はその後、胃・小腸・膵臓などから流れてきた血液と合流して（これを門脈と呼ぶ）、肝臓へ流れ込む。",
+        },
+        {
+            question: "食べ物の通り道（消化管）に含まれない臓器はどれか？",
+            images: ["images/stomach.png"],
+            options: ["胃", "脾臓", "小腸"],
+            answer: "脾臓",
+            explanation: "消化管は口から順に、口腔、食道、胃、小腸（十二指腸、空腸、回腸）、大腸（盲腸、結腸、直腸）、肛門に分けられる。これに消化を助ける分泌液を出す肝臓、胆嚢、膵臓の付属臓器が繋がる。",
+        },
+        {
+            question: "世界には内臓が左右逆という人が存在するか？",
+            images: ["images/stomach.png"],
+            options: ["する", "しない"],
+            answer: "する",
+            explanation: "内臓の位置が左右逆になる「内臓逆位」という先天性の奇形がある。全ての臓器が左右反転している場合を「完全内臓逆位」と呼ぶ。臓器の位置が逆転しているため、診察や手術の際にとても注意が必要となる。",
         }
 
     ];
@@ -83,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const scoreDisplay = document.getElementById("score");
     const answersContainer = document.getElementById("answersContainer");
     const progressBar = document.getElementById("progress");
-    const imagesContainer = document.getElementById("imagesContainer");
+    // const imagesContainer = document.getElementById("imagesContainer");
     const okSound = new Audio("sound/ok.mp3");
     const ngSound = new Audio("sound/ng.mp3");
     const nameinputContainer = document.getElementById("nameinput-container");
@@ -118,15 +139,15 @@ document.addEventListener("DOMContentLoaded", function () {
         questionContainer.textContent = currentQuestion.question;
 
         // 画像一覧を生成
-        imagesContainer.innerHTML = "";
-        currentQuestion.images.forEach((image) => {
-            const imageElement = document.createElement("img");
-            imageElement.src = image;
-            imageElement.classList.add("img-fluid", "mb-3");
-            imageElement.style.width = "200px";
-            imageElement.style.height = "200px";
-            imagesContainer.appendChild(imageElement);
-        });
+        // imagesContainer.innerHTML = "";
+        // currentQuestion.images.forEach((image) => {
+        //     const imageElement = document.createElement("img");
+        //     imageElement.src = image;
+        //     imageElement.classList.add("img-fluid", "mb-3");
+        //     imageElement.style.width = "200px";
+        //     imageElement.style.height = "200px";
+        //     imagesContainer.appendChild(imageElement);
+        // });
 
         // 選択肢のボタンを生成
         optionsContainer.innerHTML = "";
@@ -222,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nextButton.style.display = "none";
         scoreDisplay.textContent = `${username}さんのスコアは ${Math.round(score)} / 100 です。`;
         document.getElementById("countContainer").style.display = "none";
-        document.getElementById("imagesContainer").style.display = "none";
+        // document.getElementById("imagesContainer").style.display = "none";
         document.getElementById("questionNumber").textContent = "";
         document.getElementById("qrContainer").style.display = "none";
     }

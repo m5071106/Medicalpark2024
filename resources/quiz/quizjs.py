@@ -81,7 +81,7 @@ scripts += '''
     const scoreDisplay = document.getElementById("score");
     const answersContainer = document.getElementById("answersContainer");
     const progressBar = document.getElementById("progress");
-    const imagesContainer = document.getElementById("imagesContainer");
+    // const imagesContainer = document.getElementById("imagesContainer");
     const okSound = new Audio("sound/ok.mp3");
     const ngSound = new Audio("sound/ng.mp3");
     const nameinputContainer = document.getElementById("nameinput-container");
@@ -116,15 +116,15 @@ scripts += '''
         questionContainer.textContent = currentQuestion.question;
 
         // 画像一覧を生成
-        imagesContainer.innerHTML = "";
-        currentQuestion.images.forEach((image) => {
-            const imageElement = document.createElement("img");
-            imageElement.src = image;
-            imageElement.classList.add("img-fluid", "mb-3");
-            imageElement.style.width = "200px";
-            imageElement.style.height = "200px";
-            imagesContainer.appendChild(imageElement);
-        });
+        // imagesContainer.innerHTML = "";
+        // currentQuestion.images.forEach((image) => {
+        //     const imageElement = document.createElement("img");
+        //     imageElement.src = image;
+        //     imageElement.classList.add("img-fluid", "mb-3");
+        //     imageElement.style.width = "200px";
+        //     imageElement.style.height = "200px";
+        //     imagesContainer.appendChild(imageElement);
+        // });
 
         // 選択肢のボタンを生成
         optionsContainer.innerHTML = "";
@@ -220,7 +220,7 @@ scripts += '''
         nextButton.style.display = "none";
         scoreDisplay.textContent = `${username}さんのスコアは ${Math.round(score)} / 100 です。`;
         document.getElementById("countContainer").style.display = "none";
-        document.getElementById("imagesContainer").style.display = "none";
+        // document.getElementById("imagesContainer").style.display = "none";
         document.getElementById("questionNumber").textContent = "";
         document.getElementById("qrContainer").style.display = "none";
     }
