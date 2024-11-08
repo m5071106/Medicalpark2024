@@ -12,6 +12,7 @@ cp -r ./resources/assets/*.patt ./medicalpark2024/assets/
 cp -r ./resources/img ./medicalpark2024/
 cp -r ./resources/qr ./medicalpark2024/
 cp -r ./resources/quiz ./medicalpark2024/
+cp -r ./resources/assets/armarker/*.png ./medicalpark2024/quiz/images
 cp ./3dmodels/1_heart/asset1.glb ./medicalpark2024/assets/
 cp ./3dmodels/2_lungs/asset2.glb ./medicalpark2024/assets/
 cp ./3dmodels/3_stomach/asset3.glb ./medicalpark2024/assets/
@@ -22,6 +23,9 @@ cp ./3dmodels/7_pancreas/asset7.glb ./medicalpark2024/assets/
 cp ./3dmodels/8_kidney/asset8.glb ./medicalpark2024/assets/
 cp ./3dmodels/9_spleen/asset9.glb ./medicalpark2024/assets/
 cp ./3dmodels/a_total/asseta.glb ./medicalpark2024/assets/
+cp ./3dmodels/b_total2/assetb.glb ./medicalpark2024/assets/
+cp ./3dmodels/c_esophagus/assetc.glb ./medicalpark2024/assets/
+cp ./3dmodels/d_gallbladder/assetd.glb ./medicalpark2024/assets/
 cp ./resources/carta.html ./medicalpark2024/
 cp ./resources/goal.html ./medicalpark2024/
 echo "create index.html..."

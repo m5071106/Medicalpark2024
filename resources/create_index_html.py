@@ -140,7 +140,7 @@ body_3 = ''
 for asset in assets:
     asset_name = asset.split('.')[0]
     count += 1
-    if asset_name == 'asseta':
+    if asset_name == 'assetx':
         option = '-'
     else:
         option = ''

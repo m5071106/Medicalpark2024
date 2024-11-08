@@ -96,6 +96,21 @@
                     src="assets/asseta.glb"
                 ></a-asset-item>
         
+                <a-asset-item
+                    id="assetb"
+                    src="assets/assetb.glb"
+                ></a-asset-item>
+        
+                <a-asset-item
+                    id="assetc"
+                    src="assets/assetc.glb"
+                ></a-asset-item>
+        
+                <a-asset-item
+                    id="assetd"
+                    src="assets/assetd.glb"
+                ></a-asset-item>
+        
             </a-assets>
             <!-- assets ED -->
     
@@ -329,7 +344,7 @@
                     id="id-asseta-1"
                     scale="4.0 4.0 4.0"
                     position="0 0 0"
-                    rotation="180 -90 -90"
+                    rotation="180 90 -90"
                     animation-mixer="loop: repeat"
                     gltf-model="#asseta"
                     class="clickable"
@@ -338,6 +353,78 @@
                 </a-entity>
             </a-marker>
             <!-- asseta ED -->
+        
+            <!-- assetb ST -->
+            <a-marker
+                id="id-assetb"
+                type="pattern"
+                preset="custom"
+                url="assets/assetb.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id-assetb-1"
+                    scale="4.0 4.0 4.0"
+                    position="0 0 0"
+                    rotation="180 90 -90"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#assetb"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- assetb ED -->
+        
+            <!-- assetc ST -->
+            <a-marker
+                id="id-assetc"
+                type="pattern"
+                preset="custom"
+                url="assets/assetc.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id-assetc-1"
+                    scale="4.0 4.0 4.0"
+                    position="0 0 0"
+                    rotation="180 90 -90"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#assetc"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- assetc ED -->
+        
+            <!-- assetd ST -->
+            <a-marker
+                id="id-assetd"
+                type="pattern"
+                preset="custom"
+                url="assets/assetd.patt"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+            >
+                <a-entity
+                    id="id-assetd-1"
+                    scale="4.0 4.0 4.0"
+                    position="0 0 0"
+                    rotation="180 90 -90"
+                    animation-mixer="loop: repeat"
+                    gltf-model="#assetd"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- assetd ED -->
         
             <a-entity camera></a-entity>
             <a-entity light="type: ambient; intensity: 1.1;"></a-entity>
@@ -371,53 +458,68 @@
                     switch(markerId) {
     
                         case 'id-asset1':
-                            msg1 = 'えいよう や さんそ を からだ に おくる\n';
-                            msg2 = 'しんぞう（心臓）';
+                            msg1 = '心臓\n';
+                            msg2 = '(4,7,8,13)';
                             break;
             
                         case 'id-asset2':
-                            msg1 = 'さんそ と にさんかたんそ を いれかえる\n';
-                            msg2 = 'はい（肺）';
+                            msg1 = '肺\n';
+                            msg2 = '(1,3,10)';
                             break;
             
                         case 'id-asset3':
-                            msg1 = 'たべもの を おかゆ みたいに ドロドロに する\n';
-                            msg2 = 'い（胃）';
+                            msg1 = '胃\n';
+                            msg2 = '(22)';
                             break;
             
                         case 'id-asset4':
-                            msg1 = 'たべもの から えいよう を もらう\n';
-                            msg2 = '小ちょう（小腸）';
+                            msg1 = '小腸\n';
+                            msg2 = '(2)';
                             break;
             
                         case 'id-asset5':
-                            msg1 = 'うんち を つくる\n';
-                            msg2 = '大ちょう（大腸）';
+                            msg1 = '大腸\n';
+                            msg2 = '(11)';
                             break;
             
                         case 'id-asset6':
-                            msg1 = 'からだ の なかで とても おおきな ぞうき\n';
-                            msg2 = 'かんぞう（肝臓）';
+                            msg1 = '肝臓\n';
+                            msg2 = '(19)';
                             break;
             
                         case 'id-asset7':
-                            msg1 = 'たべもの を こわす しょうかえき を つくる\n';
-                            msg2 = 'すいぞう（膵臓）';
+                            msg1 = '膵臓\n';
+                            msg2 = '(21)';
                             break;
             
                         case 'id-asset8':
-                            msg1 = 'おしっこ を つくる\n';
-                            msg2 = 'じんぞう（腎臓）';
+                            msg1 = '腎臓\n';
+                            msg2 = '(15,20)';
                             break;
             
                         case 'id-asset9':
-                            msg1 = '\n';
-                            msg2 = '';
+                            msg1 = '脾臓\n';
+                            msg2 = '(19)';
                             break;
             
                         case 'id-asseta':
-                            msg1 = '\n';
-                            msg2 = '';
+                            msg1 = '人体\n';
+                            msg2 = '(1-22)';
+                            break;
+            
+                        case 'id-assetb':
+                            msg1 = '人体(肺を除く)\n';
+                            msg2 = '(1-22)1,5,10を除く';
+                            break;
+            
+                        case 'id-assetc':
+                            msg1 = '食道\n';
+                            msg2 = '(12)';
+                            break;
+            
+                        case 'id-assetd':
+                            msg1 = '胆嚢\n';
+                            msg2 = '(16,17)';
                             break;
             
                     default:
