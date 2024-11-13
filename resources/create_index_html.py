@@ -160,7 +160,7 @@ for asset in assets:
                     id="id-{asset_name}-1"
                     scale="4.0 4.0 4.0"
                     position="0 0 0"
-                    rotation="180 {option}90 -90"
+                    rotation="0 0 0"
                     animation-mixer="loop: repeat"
                     gltf-model="#{asset_name}"
                     class="clickable"
@@ -170,6 +170,8 @@ for asset in assets:
             </a-marker>
             <!-- {asset_name} ED -->
         '''
+
+                    # rotation="180 {option}90 -90"
 
 with open(index_html_path, 'a', encoding='utf-8') as f:
     f.write(body_3)
