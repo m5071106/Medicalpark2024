@@ -180,7 +180,7 @@ scripts += '''
             // 時間切れのためスコア加算なし
             currentOptionButton.classList.add("optionNG");
             timeoverContainer.style.display = "block";
-            await sleep(1000);
+            await sleep(3000);
             timeoverContainer.style.display = "none";
         }else if(currentOptionName === questions[currentQuestionIndex].answer) {
             okSound.currentTime = 0;
@@ -188,14 +188,14 @@ scripts += '''
             score += 100 / numOfQuiz;
             currentOptionButton.classList.add("optionOK");
             answerOkContainer.style.display = "block";
-            await sleep(1000);
+            await sleep(3000);
             answerOkContainer.style.display = "none";
         }else {
             ngSound.currentTime = 0;
             ngSound.play();
             currentOptionButton.classList.add("optionNG");
             answerNGContainer.style.display = "block";
-            await sleep(1000);
+            await sleep(3000);
             answerNGContainer.style.display = "none";
         }
         scoreDisplay.textContent = `${username}さんのスコア: ${Math.round(score)}`;
@@ -227,7 +227,7 @@ scripts += '''
 
     // 解説を表示する
     function displayAnswers() {
-        answersContainer.innerHTML = "<h2>回答と解説</h2>";
+        answersContainer.innerHTML = "<h2>解答と解説</h2>";
         questions.forEach((question, index) => {
             const answerDiv = document.createElement("div");
             answerDiv.classList.add("mb-2");
