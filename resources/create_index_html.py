@@ -220,12 +220,15 @@ if debug_mode:
 
 body_4 += '''
             var msg1 = "";
-            var msg2 = ""; 
+            var msg2 = "";
+            var prevMsg1 = "";
+            var numOfMarkers = 0;
             markers.forEach(marker => {
                 marker.addEventListener('markerFound', () => {
                     const markerId = marker.getAttribute('id');
                     msg1 = "";
                     msg2 = "";
+                    numOfMarkers++;
                     switch(markerId) {
     '''
 
@@ -246,8 +249,9 @@ body_4 += '''
                         msg2 = "default";
                         break;
                     }
-                    label1.textContent = msg1;
-                    label2.textContent = msg2;
+                    label1.textContent = prevMsg1 + " " + msg1;
+                    label2.textContent = msg2; 
+                    prevMsg1 = prevMsg1 + " " + msg1;
     '''
 
 if debug_mode:
@@ -264,8 +268,13 @@ body_4 += '''
                 });
 
                 marker.addEventListener('markerLost', () => {
-                    label1.textContent = "";
-                    label2.textContent = "";
+                    const markerId = marker.getAttribute('id');
+                    numOfMarkers--;
+                    if (numOfMarkers == 0) {
+                        label1.textContent = "";
+                        label2.textContent = "";
+                        prevMsg1 = "";
+                    }
                 });
             });
         </script>
