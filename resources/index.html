@@ -461,77 +461,77 @@
                     switch(markerId) {
     
                         case 'id-asset1':
-                            msg1 = '心臓\n';
+                            msg1 = '<ruby>心臓<rt>しんぞう</rt></ruby>';
                             msg2 = '(4,7,8,13)';
                             break;
             
                         case 'id-asset2':
-                            msg1 = '肺\n';
+                            msg1 = '<ruby>肺<rt>はい</rt></ruby>';
                             msg2 = '(1,3,10)';
                             break;
             
                         case 'id-asset3':
-                            msg1 = '胃\n';
+                            msg1 = '<ruby>胃<rt>い</rt></ruby>';
                             msg2 = '(22)';
                             break;
             
                         case 'id-asset4':
-                            msg1 = '小腸\n';
+                            msg1 = '<ruby>小腸<rt>しょうちょう</rt></ruby>';
                             msg2 = '(2)';
                             break;
             
                         case 'id-asset5':
-                            msg1 = '大腸\n';
+                            msg1 = '<ruby>大腸<rt>だいちょう</rt></ruby>';
                             msg2 = '(11)';
                             break;
             
                         case 'id-asset6':
-                            msg1 = '肝臓\n';
+                            msg1 = '<ruby>肝臓<rt>かんぞう</rt></ruby>';
                             msg2 = '(19)';
                             break;
             
                         case 'id-asset7':
-                            msg1 = '膵臓\n';
+                            msg1 = '<ruby>膵臓<rt>すいぞう</rt></ruby>';
                             msg2 = '(21)';
                             break;
             
                         case 'id-asset8':
-                            msg1 = '腎臓\n';
+                            msg1 = '<ruby>腎臓<rt>じんぞう</rt></ruby>';
                             msg2 = '(15,20)';
                             break;
             
                         case 'id-asset9':
-                            msg1 = '脾臓\n';
+                            msg1 = '<ruby>脾臓<rt>ひぞう</rt></ruby>';
                             msg2 = '(19)';
                             break;
             
                         case 'id-asseta':
-                            msg1 = '人体\n';
+                            msg1 = '<ruby>人体<rt>じんたい1</rt></ruby>';
                             msg2 = '(1-22)';
                             break;
             
                         case 'id-assetb':
-                            msg1 = '人体(肺を除く)\n';
+                            msg1 = '<ruby>人体(肺を除く)<rt>じんたい2</rt></ruby>';
                             msg2 = '(1-22)1,5,10を除く';
                             break;
             
                         case 'id-assetc':
-                            msg1 = '食道\n';
+                            msg1 = '<ruby>食道<rt>しょくどう</rt></ruby>';
                             msg2 = '(12)';
                             break;
             
                         case 'id-assetd':
-                            msg1 = '胆嚢\n';
+                            msg1 = '<ruby>胆嚢<rt>たんのう</rt></ruby>';
                             msg2 = '(16,17)';
                             break;
             
                     default:
-                        msg1 = "\n";
+                        msg1 = "";
                         msg2 = "default";
                         break;
                     }
-                    label1.textContent = prevMsg1 + " " + msg1;
-                    label2.textContent = msg2; 
+                    label1.innerHTML = "<table><tr><td width='70%'>上下操作でモデル回転,左右操作でモデルを傾けます</td><td width='30%'><img src='img/Guide.png' height='150px'/></td></tr></table>";
+                    label2.innerHTML = prevMsg1 + " " + msg1; 
                     prevMsg1 = prevMsg1 + " " + msg1;
     
                 });

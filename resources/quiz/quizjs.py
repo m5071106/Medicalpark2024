@@ -274,13 +274,9 @@ scripts += '''
         document.getElementById("questionNumber").innerHTML = `
                 <img src="images/chr7.png" height="30px" />&nbsp;
                 <img src="images/chr5.png" height="30px" />&nbsp;
-                <img src="images/chr3.png" height="30px" />&nbsp;
-                <img src="images/chr1.png" height="30px" />&nbsp;
                 お疲れ様でした！
-                &nbsp;<img src="images/chr8.png" height="30px" />
-                &nbsp;<img src="images/chr6.png" height="30px" />
-                &nbsp;<img src="images/chr4.png" height="30px" />
-                &nbsp;<img src="images/chr2.png" height="30px" />
+                &nbsp;<img src="images/chr3.png" height="30px" />
+                &nbsp;<img src="images/chr1.png" height="30px" />
                 `;
         document.getElementById("remainTime").textContent = "";
     }

@@ -245,12 +245,12 @@ with open(os.path.dirname(__file__) + '/word_list.csv', 'r', encoding='utf-8') a
 
 body_4 += '''
                     default:
-                        msg1 = "\\n";
+                        msg1 = "";
                         msg2 = "default";
                         break;
                     }
-                    label1.textContent = prevMsg1 + " " + msg1;
-                    label2.textContent = msg2; 
+                    label1.innerHTML = "<table><tr><td width='70%'>上下操作でモデル回転,左右操作でモデルを傾けます</td><td width='30%'><img src='img/Guide.png' height='150px'/></td></tr></table>";
+                    label2.innerHTML = prevMsg1 + " " + msg1; 
                     prevMsg1 = prevMsg1 + " " + msg1;
     '''
 
