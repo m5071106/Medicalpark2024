@@ -77,6 +77,8 @@ scripts += question_data
 
 scripts += f'''
     ];
+    const chrsL = ["images/chr1.png", "images/chr2.png", "images/chr3.png", "images/chr4.png", "images/chr5.png", "images/chr6.png", "images/chr7.png", "images/chr8.png"];
+    const chrsR = ["images/chr1.png", "images/chr2.png", "images/chr3.png", "images/chr4.png", "images/chr5.png", "images/chr6.png", "images/chr7.png", "images/chr8.png"];
 
     let countsPerQuestion = {countsPerQuestion};
     const numOfQuiz = {numOfQuiz};
@@ -129,6 +131,20 @@ scripts += '''
     function displayQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
         questionContainer.innerHTML = currentQuestion.question;
+
+        document.getElementById("leftchr").innerHTML = "";
+        const imgElementL = document.createElement("img");
+        imgElementL.src = chrsL[currentQuestionIndex];
+        imgElementL.classList.add("img-fluid", "mb-3");
+        imgElementL.style.height = "160px";
+        document.getElementById("leftchr").appendChild(imgElementL);
+
+        document.getElementById("rightchr").innerHTML = "";
+        const imgElementR = document.createElement("img");
+        imgElementR.src = chrsR[currentQuestionIndex];
+        imgElementR.classList.add("img-fluid", "mb-3");
+        imgElementR.style.height = "160px";
+        document.getElementById("rightchr").appendChild(imgElementR);
 
         // 画像一覧を生成
         // imagesContainer.innerHTML = "";
@@ -238,6 +254,8 @@ scripts += '''
         // document.getElementById("imagesContainer").style.display = "none";
         document.getElementById("questionNumber").textContent = "";
         document.getElementById("qrContainer").style.display = "none";
+        document.getElementById("leftchr").style.display = "none";
+        document.getElementById("rightchr").style.display = "none";
     }
 
     // 解説を表示する
@@ -253,12 +271,24 @@ scripts += '''
                 answersContainer.appendChild(answerDiv);
             }
         });
-        document.getElementById("questionNumber").innerHTML = `お疲れ様でした！`;
+        document.getElementById("questionNumber").innerHTML = `
+                <img src="images/chr7.png" height="30px" />&nbsp;
+                <img src="images/chr5.png" height="30px" />&nbsp;
+                <img src="images/chr3.png" height="30px" />&nbsp;
+                <img src="images/chr1.png" height="30px" />&nbsp;
+                お疲れ様でした！
+                &nbsp;<img src="images/chr8.png" height="30px" />
+                &nbsp;<img src="images/chr6.png" height="30px" />
+                &nbsp;<img src="images/chr4.png" height="30px" />
+                &nbsp;<img src="images/chr2.png" height="30px" />
+                `;
         document.getElementById("remainTime").textContent = "";
     }
 
     // 初回処理 (全体問題のシャッフルと最初の問題の表示)
     shuffle(questions);
+    shuffle(chrsL);
+    shuffle(chrsR);
     displayQuestion();
     answerOkContainer.style.display = "none";
     answerNGContainer.style.display = "none";
