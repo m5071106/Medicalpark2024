@@ -2,84 +2,84 @@
 document.addEventListener("DOMContentLoaded", function () {
     const questions = [
         {
-            question: "肺(はい)は左右に分かれ、さらに区域に分かれている。右肺(はい)はいくつの区域に分かれているか？",
+            question: "<ruby>肺<rt> はい</rt></ruby>は左右に分かれ、さらに区域に分かれている。右<ruby>肺<rt> はい</rt></ruby>はいくつの区域に分かれているか？【02】",
             images: ["images/stomach.png"],
             options: ["１つ", "２つ", "３つ"],
             answer: "３つ",
-            explanation: "肺は左右二つに大きく分かれているが、それぞれの肺はさらにいくつかの区域に分かれている。この区域を葉(よう)と呼んでいる。右の肺は3葉、左の肺は2葉に分けられる。",
+            explanation: "<ruby>肺<rt> はい</rt></ruby>は左右二つに大きく分かれているが、それぞれの<ruby>肺<rt> はい</rt></ruby>はさらにいくつかの区域に分かれている。この区域を葉(よう)と呼んでいる。右の<ruby>肺<rt> はい</rt></ruby>は3葉、左の<ruby>肺<rt> はい</rt></ruby>は2葉に分けられる。",
         },
         {
-            question: "空気の通り道である気道(きどう)と、食事の通り道である食道(しょくどう)はどちらが身体の前に位置するか？",
+            question: "空気の通り道である<ruby>気道<rt> きどう</rt></ruby>と、食事の通り道である<ruby>食道<rt> しょくどう</rt></ruby>はどちらが身体の前に位置するか？【11, 12】",
             images: ["images/stomach.png"],
-            options: ["食道(しょくどう)", "気道(きどう)", "公道(こうどう)"],
-            answer: "気道(きどう)",
-            explanation: "空気の通り道である気道(気管支)が前面、食べ物の通り道である食道は気道よりも背面に位置し、気管支と接している。身体の中に「公道」と呼ばれる臓器はない。",
+            options: ["<ruby>食道<rt> しょくどう</rt></ruby>", "<ruby>気道<rt> きどう</rt></ruby>", "<ruby>公道<rt> こうどう</rt></ruby>"],
+            answer: "気道 きどう",
+            explanation: "空気の通り道である<ruby>気道<rt> きどう</rt></ruby>(気管支)が前面、食べ物の通り道である<ruby>食道<rt> しょくどう</rt></ruby>は<ruby>気道<rt> きどう</rt></ruby>よりも背面に位置し、気管支と接している。身体の中に「<ruby>公道<rt> こうどう</rt></ruby>」と呼ばれる臓器はない。",
         },
         {
-            question: "心臓(しんぞう)からは何本の血管が出ているか？",
+            question: "<ruby>心臓<rt> しんぞう</rt></ruby>からは何本の血管が出ているか？【01】",
             images: ["images/stomach.png"],
             options: ["４本", "６本", "８本"],
             answer: "８本",
-            explanation: "心臓からは酸素を多く含む動脈血が流れる大動脈と４本の肺静脈、酸素が少ない静脈血が流れる上下２本の大静脈と肺動脈(後で左右に分かれるが心臓から出ているのは一本)の合計８本の血管が出ている。",
+            explanation: "<ruby>心臓<rt> しんぞう</rt></ruby>からは酸素を多く含む動脈血が流れる大動脈と４本の<ruby>肺<rt> はい</rt></ruby>静脈、酸素が少ない静脈血が流れる上下２本の大静脈と<ruby>肺<rt> はい</rt></ruby>動脈(後で左右に分かれるが<ruby>心臓<rt> しんぞう</rt></ruby>から出ているのは一本)の合計８本の血管が出ている。",
         },
         {
-            question: "胃(い)は人の正面から見てどちら側に膨らんでいるか？",
+            question: "<ruby>胃<rt> い</rt></ruby>は人の正面から見てどちら側に膨らんでいるか？【10, 11】",
             images: ["images/stomach.png"],
             options: ["右", "真ん中", "左"],
             answer: "左",
-            explanation: "胃は左側に偏って大きく膨らんでいる。食べた後すぐに横になるのはお勧めしないが、もし横になるなら左側を下にして横になると、食べ物が胃の膨らんだところに貯まって楽なことが多い。",
+            explanation: "<ruby>胃<rt> い</rt></ruby>は左側に偏って大きく膨らんでいる。食べた後すぐに横になるのはお勧めしないが、もし横になるなら左側を下にして横になると、食べ物が<ruby>胃<rt> い</rt></ruby>の膨らんだところに貯まって楽なことが多い。",
         },
         {
-            question: "大腸(だいちょう)はお腹の中でぐるりと一周している。どちら向きで一周しているか？",
+            question: "<ruby>大腸<rt> だいちょう</rt></ruby>はお腹の中でぐるりと一周している。どちら向きで一周しているか？【05, 11】",
             images: ["images/stomach.png"],
             options: ["右回り", "左回り", "前回り"],
             answer: "右回り",
-            explanation: "大腸は小腸で吸収できなかったもの、腸や腸内細菌の死骸などが送られてくる。お腹の右下から脇腹を上がり、お腹の前を右から左に横切り、左脇腹を下がっていく。水分を抜いて便の硬さを調節している。",
+            explanation: "<ruby>大腸<rt> だいちょう</rt></ruby>は<ruby>小腸<rt> しょうちょう</rt></ruby>で吸収できなかったもの、腸や腸内細菌の死骸などが送られてくる。お腹の右下から脇腹を上がり、お腹の前を右から左に横切り、左脇腹を下がっていく。水分を抜いて便の硬さを調節している。",
         },
         {
-            question: "飲食物から摂取した水分はどこでもっとも吸収されるか？",
+            question: "飲食物から摂取した水分はどこでもっとも吸収されるか？【03, 04, 05】",
             images: ["images/stomach.png"],
-            options: ["胃(い)", "小腸(しょうちょう)", "大腸(だいちょう)"],
-            answer: "小腸(しょうちょう)",
-            explanation: "身体に取りこまれた水分は約９０％が小腸で吸収されます。また小腸で水分が吸収されるとき、一緒に塩分や糖分があると吸収が促進されます。小腸での水分吸収が不十分だと下痢をおこしやすくなります。",
+            options: ["<ruby>胃<rt> い</rt></ruby>", "<ruby>小腸<rt> しょうちょう</rt></ruby>", "<ruby>大腸<rt> だいちょう</rt></ruby>"],
+            answer: "小腸 しょうちょう",
+            explanation: "身体に取りこまれた水分は約９０％が<ruby>小腸<rt> しょうちょう</rt></ruby>で吸収されます。また<ruby>小腸<rt> しょうちょう</rt></ruby>で水分が吸収されるとき、一緒に塩分や糖分があると吸収が促進されます。<ruby>小腸<rt> しょうちょう</rt></ruby>での水分吸収が不十分だと下痢をおこしやすくなります。",
         },
         {
-            question: "尿をつくる腎臓(じんぞう)はどんな形をしているか。",
+            question: "尿をつくる<ruby>腎臓<rt> じんぞう</rt></ruby>はどんな形をしているか。【08】",
             images: ["images/stomach.png"],
             options: ["エダマメ", "ソラマメ", "イチゴ"],
             answer: "ソラマメ",
-            explanation: "腎臓はソラマメ型をした臓器で身体の後方に位置し、左右二つ存在する。右の腎臓は少し肝臓に押されて左の腎臓の位置よりも低い位置にある。",
+            explanation: "<ruby>腎臓<rt> じんぞう</rt></ruby>はソラマメ型をした臓器で身体の後方に位置し、左右二つ存在する。右の<ruby>腎臓<rt> じんぞう</rt></ruby>は少し<ruby>肝臓<rt> かんぞう</rt></ruby>に押されて左の<ruby>腎臓<rt> じんぞう</rt></ruby>の位置よりも低い位置にある。",
         },
         {
-            question: "膵臓(すいぞう)は胃(い)の位置と比べてどこに位置するか？",
+            question: "<ruby>膵臓<rt> すいぞう</rt></ruby>は<ruby>胃<rt> い</rt></ruby>の位置と比べてどこに位置するか？【03, 09, 11】",
             images: ["images/stomach.png"],
             options: ["前", "右", "後"],
             answer: "後",
-            explanation: "膵臓はオタマジャクシにも似た形で身体の中心、胃後方に位置する。中心部分が膨らんでおり(頭部)、身体の左側へと伸びて徐々に細くなる(尾部)。消化液(膵液)やホルモン(インスリン・グルカゴン)を分泌する。",
+            explanation: "<ruby>膵臓<rt> すいぞう</rt></ruby>はオタマジャクシにも似た形で身体の中心、<ruby>胃<rt> い</rt></ruby>後方に位置する。中心部分が膨らんでおり(頭部)、身体の左側へと伸びて徐々に細くなる(尾部)。消化液(膵液)やホルモン(インスリン・グルカゴン)を分泌する。",
         },
         {
-            question: "肝臓(かんぞう)と管で繋がっている臓器はどれか？",
+            question: "<ruby>肝臓<rt> かんぞう</rt></ruby>と管で繋がっている臓器はどれか？【06, 11, ??】",
             images: ["images/stomach.png"],
-            options: ["膵臓(すいぞう)", "胆嚢(たんのう)", "小腸(しょうちょう)"],
-            answer: "胆嚢(たんのう)",
-            explanation: "肝臓でつくられた胆汁酸液が総肝管を通って胆嚢に移動し、胆汁として貯蔵される。胆汁はその後、総胆管を通って移動し、膵管と合流して十二指腸へと流れ込む。",
+            options: ["<ruby>膵臓<rt> すいぞう</rt></ruby>", "<ruby>胆嚢<rt> たんのう</rt></ruby>", "<ruby>小腸<rt> しょうちょう</rt></ruby>"],
+            answer: "胆嚢 たんのう",
+            explanation: "<ruby>肝臓<rt> かんぞう</rt></ruby>でつくられた胆汁酸液が総肝管を通って<ruby>胆嚢<rt> たんのう</rt></ruby>に移動し、胆汁として貯蔵される。胆汁はその後、総胆管を通って移動し、膵管と合流して十二指腸へと流れ込む。",
         },
         {
-            question: "血液中の古くなった赤血球を破壊する臓器はどれか？",
+            question: "血液中の古くなった赤血球を破壊する臓器はどれか？【04, 06, 09】",
             images: ["images/stomach.png"],
-            options: ["肝臓(かんぞう)", "小腸(しょうちょう)", "脾臓(ひぞう)"],
-            answer: "脾臓(ひぞう)",
-            explanation: "脾臓は血液を貯えたり、古くなった赤血球を破壊したりします。脾臓に流れ込んだ血液はその後、胃・小腸・膵臓などから流れてきた血液と合流して(これを門脈と呼ぶ)、肝臓へ流れ込む。",
+            options: ["<ruby>肝臓<rt> かんぞう</rt></ruby>", "<ruby>小腸<rt> しょうちょう</rt></ruby>", "<ruby>脾臓<rt> ひぞう</rt></ruby>"],
+            answer: "脾臓 ひぞう",
+            explanation: "<ruby>脾臓<rt> ひぞう</rt></ruby>は血液を貯えたり、古くなった赤血球を破壊したりします。<ruby>脾臓<rt> ひぞう</rt></ruby>に流れ込んだ血液はその後、<ruby>胃<rt> い</rt></ruby>・<ruby>小腸<rt> しょうちょう</rt></ruby>・<ruby>膵臓<rt> すいぞう</rt></ruby>などから流れてきた血液と合流して(これを門脈と呼ぶ)、<ruby>肝臓<rt> かんぞう</rt></ruby>へ流れ込む。",
         },
         {
-            question: "食べ物の通り道(消化管)に含まれない臓器はどれか？",
+            question: "食べ物の通り道(消化管)に含まれない臓器はどれか？【03, 04, 09, 11】",
             images: ["images/stomach.png"],
-            options: ["胃(い)", "脾臓(ひぞう)", "小腸(しょうちょう)"],
-            answer: "脾臓(ひぞう)",
-            explanation: "消化管は口から順に、口腔、食道、胃、小腸(十二指腸、空腸、回腸)、大腸(盲腸、結腸、直腸)、肛門に分けられる。これに消化を助ける分泌液を出す肝臓、胆嚢、膵臓の付属臓器が繋がる。",
+            options: ["<ruby>胃<rt> い</rt></ruby>", "<ruby>脾臓<rt> ひぞう</rt></ruby>", "<ruby>小腸<rt> しょうちょう</rt></ruby>"],
+            answer: "脾臓 ひぞう",
+            explanation: "消化管は口から順に、口腔、<ruby>食道<rt> しょくどう</rt></ruby>、<ruby>胃<rt> い</rt></ruby>、<ruby>小腸<rt> しょうちょう</rt></ruby>(十二指腸、空腸、回腸)、<ruby>大腸<rt> だいちょう</rt></ruby>(盲腸、結腸、直腸)、肛門に分けられる。これに消化を助ける分泌液を出す<ruby>肝臓<rt> かんぞう</rt></ruby>、<ruby>胆嚢<rt> たんのう</rt></ruby>、<ruby>膵臓<rt> すいぞう</rt></ruby>の付属臓器が繋がる。",
         },
         {
-            question: "世界には内臓が左右逆という人が存在するか？",
+            question: "世界には内臓が左右逆という人が存在するか？【??】",
             images: ["images/stomach.png"],
             options: ["する", "しない"],
             answer: "する",
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // クイズを表示する関数
     function displayQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
-        questionContainer.textContent = currentQuestion.question;
+        questionContainer.innerHTML = currentQuestion.question;
 
         // 画像一覧を生成
         // imagesContainer.innerHTML = "";
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentQuestion.options.forEach((option) => {
             const optionButton = document.createElement("button");
             optionButton.classList.add("btn", "btn-outline-primary", "option");
-            optionButton.textContent = option;
+            optionButton.innerHTML = option;
             optionButton.addEventListener("click", () =>
                 selectOption(optionButton, option)
             );
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 解説を表示する
     function displayAnswers() {
-        answersContainer.innerHTML = "<h2>解答と解説</h2>";
+        answersContainer.innerHTML = "<h4>解答と解説</h4>";
         questions.forEach((question, index) => {
             const answerDiv = document.createElement("div");
             answerDiv.classList.add("mb-2");
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 answersContainer.appendChild(answerDiv);
             }
         });
-        document.getElementById("questionNumber").textContent = `お疲れ様でした！`;
+        document.getElementById("questionNumber").innerHTML = `お疲れ様でした！`;
         document.getElementById("remainTime").textContent = "";
     }
 

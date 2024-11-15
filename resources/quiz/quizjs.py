@@ -46,6 +46,21 @@ for d in data:
         question_data += "        {\n"
 
     if d[2] is not None:
+        if row_num == 0 or row_num == 2 or row_num == 4:
+            d[2] = d[2].replace("肺", "<ruby>肺<rt> はい</rt></ruby>")
+            d[2] = d[2].replace("胃", "<ruby>胃<rt> い</rt></ruby>")
+            d[2] = d[2].replace("腎臓", "<ruby>腎臓<rt> じんぞう</rt></ruby>")
+            d[2] = d[2].replace("膵臓", "<ruby>膵臓<rt> すいぞう</rt></ruby>")
+            d[2] = d[2].replace("脾臓", "<ruby>脾臓<rt> ひぞう</rt></ruby>")
+            d[2] = d[2].replace("肝臓", "<ruby>肝臓<rt> かんぞう</rt></ruby>")
+            d[2] = d[2].replace("心臓", "<ruby>心臓<rt> しんぞう</rt></ruby>")
+            d[2] = d[2].replace("胆嚢", "<ruby>胆嚢<rt> たんのう</rt></ruby>")
+            d[2] = d[2].replace("小腸", "<ruby>小腸<rt> しょうちょう</rt></ruby>")
+            d[2] = d[2].replace("大腸", "<ruby>大腸<rt> だいちょう</rt></ruby>")
+            d[2] = d[2].replace("食道", "<ruby>食道<rt> しょくどう</rt></ruby>")
+            d[2] = d[2].replace("気道", "<ruby>気道<rt> きどう</rt></ruby>")
+            d[2] = d[2].replace("公道", "<ruby>公道<rt> こうどう</rt></ruby>")
+            
         question_data += "            " + index_array[row_num] + d[2] + ",\n"
 
     if row_num == 4:
@@ -113,7 +128,7 @@ scripts += '''
     // クイズを表示する関数
     function displayQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
-        questionContainer.textContent = currentQuestion.question;
+        questionContainer.innerHTML = currentQuestion.question;
 
         // 画像一覧を生成
         // imagesContainer.innerHTML = "";
@@ -133,7 +148,7 @@ scripts += '''
         currentQuestion.options.forEach((option) => {
             const optionButton = document.createElement("button");
             optionButton.classList.add("btn", "btn-outline-primary", "option");
-            optionButton.textContent = option;
+            optionButton.innerHTML = option;
             optionButton.addEventListener("click", () =>
                 selectOption(optionButton, option)
             );
@@ -227,7 +242,7 @@ scripts += '''
 
     // 解説を表示する
     function displayAnswers() {
-        answersContainer.innerHTML = "<h2>解答と解説</h2>";
+        answersContainer.innerHTML = "<h4>解答と解説</h4>";
         questions.forEach((question, index) => {
             const answerDiv = document.createElement("div");
             answerDiv.classList.add("mb-2");
@@ -238,7 +253,7 @@ scripts += '''
                 answersContainer.appendChild(answerDiv);
             }
         });
-        document.getElementById("questionNumber").textContent = `お疲れ様でした！`;
+        document.getElementById("questionNumber").innerHTML = `お疲れ様でした！`;
         document.getElementById("remainTime").textContent = "";
     }
 
