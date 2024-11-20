@@ -37,6 +37,24 @@ scripts = '''
 document.addEventListener("DOMContentLoaded", function () {
     const questions = [
 '''
+
+# ルビ表記関数
+def ruby_text(text):
+    text = text.replace("肺", "<ruby>肺<rt> はい</rt></ruby>")
+    text = text.replace("胃", "<ruby>胃<rt> い</rt></ruby>")
+    text = text.replace("腎臓", "<ruby>腎臓<rt> じんぞう</rt></ruby>")
+    text = text.replace("膵臓", "<ruby>膵臓<rt> すいぞう</rt></ruby>")
+    text = text.replace("脾臓", "<ruby>脾臓<rt> ひぞう</rt></ruby>")
+    text = text.replace("肝臓", "<ruby>肝臓<rt> かんぞう</rt></ruby>")
+    text = text.replace("心臓", "<ruby>心臓<rt> しんぞう</rt></ruby>")
+    text = text.replace("胆嚢", "<ruby>胆嚢<rt> たんのう</rt></ruby>")
+    text = text.replace("小腸", "<ruby>小腸<rt> しょうちょう</rt></ruby>")
+    text = text.replace("大腸", "<ruby>大腸<rt> だいちょう</rt></ruby>")
+    text = text.replace("食道", "<ruby>食道<rt> しょくどう</rt></ruby>")
+    text = text.replace("気道", "<ruby>気道<rt> きどう</rt></ruby>")
+    text = text.replace("公道", "<ruby>公道<rt> こうどう</rt></ruby>")
+    return text
+
 # Excel から取得したデータを整形して scripts に追加
 row_num = 0
 index_array = ['question: ', 'images: ', 'options: ', 'answer: ', 'explanation: ']
@@ -47,19 +65,7 @@ for d in data:
 
     if d[2] is not None:
         if row_num == 0 or row_num == 2 or row_num == 4:
-            d[2] = d[2].replace("肺", "<ruby>肺<rt> はい</rt></ruby>")
-            d[2] = d[2].replace("胃", "<ruby>胃<rt> い</rt></ruby>")
-            d[2] = d[2].replace("腎臓", "<ruby>腎臓<rt> じんぞう</rt></ruby>")
-            d[2] = d[2].replace("膵臓", "<ruby>膵臓<rt> すいぞう</rt></ruby>")
-            d[2] = d[2].replace("脾臓", "<ruby>脾臓<rt> ひぞう</rt></ruby>")
-            d[2] = d[2].replace("肝臓", "<ruby>肝臓<rt> かんぞう</rt></ruby>")
-            d[2] = d[2].replace("心臓", "<ruby>心臓<rt> しんぞう</rt></ruby>")
-            d[2] = d[2].replace("胆嚢", "<ruby>胆嚢<rt> たんのう</rt></ruby>")
-            d[2] = d[2].replace("小腸", "<ruby>小腸<rt> しょうちょう</rt></ruby>")
-            d[2] = d[2].replace("大腸", "<ruby>大腸<rt> だいちょう</rt></ruby>")
-            d[2] = d[2].replace("食道", "<ruby>食道<rt> しょくどう</rt></ruby>")
-            d[2] = d[2].replace("気道", "<ruby>気道<rt> きどう</rt></ruby>")
-            d[2] = d[2].replace("公道", "<ruby>公道<rt> こうどう</rt></ruby>")
+            d[2] = ruby_text(d[2])
             
         question_data += "            " + index_array[row_num] + d[2] + ",\n"
 
@@ -91,7 +97,9 @@ scripts += '''
     let score = 0;
     let isInit = true;
     let username = "名無し";
-    
+    let selectedOptions = [];
+    let answerResults = [];
+
     const questionContainer = document.getElementById("questionContainer");
     const optionsContainer = document.getElementById("optionsContainer");
     const nextButton = document.getElementById("nextButton");
@@ -131,14 +139,14 @@ scripts += '''
     function displayQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
         questionContainer.innerHTML = currentQuestion.question;
-
+        // 左側に表示するキャラクターの定義
         document.getElementById("leftchr").innerHTML = "";
         const imgElementL = document.createElement("img");
         imgElementL.src = chrsL[currentQuestionIndex];
         imgElementL.classList.add("img-fluid", "mb-3");
         imgElementL.style.height = "160px";
         document.getElementById("leftchr").appendChild(imgElementL);
-
+        // 右側に表示するキャラクターの定義
         document.getElementById("rightchr").innerHTML = "";
         const imgElementR = document.createElement("img");
         imgElementR.src = chrsR[currentQuestionIndex];
@@ -160,7 +168,7 @@ scripts += '''
         // 選択肢のボタンを生成
         optionsContainer.innerHTML = "";
         i = 0;
-        numOption = currentQuestion.options.length;
+        var numOption = currentQuestion.options.length;
         currentQuestion.options.forEach((option) => {
             const optionButton = document.createElement("button");
             optionButton.classList.add("btn", "btn-outline-primary", "option");
@@ -207,12 +215,15 @@ scripts += '''
     // 次へボタンを押したときの処理
     nextButton.addEventListener("click", async () => {
         currentOptionButton.classList.remove("optionSelected","btn-outline-primary");
+        nextButton.style.visibility = "hidden";
+        selectedOptions.push(currentOptionName);
         if(document.getElementById("remainTime").innerText == 0) {
             // 時間切れのためスコア加算なし
             currentOptionButton.classList.add("optionNG");
             timeoverContainer.style.display = "block";
             await sleep(3000);
             timeoverContainer.style.display = "none";
+            answerResults.push("時間切れ");
         }else if(currentOptionName === questions[currentQuestionIndex].answer) {
             okSound.currentTime = 0;
             okSound.play();
@@ -221,6 +232,7 @@ scripts += '''
             answerOkContainer.style.display = "block";
             await sleep(3000);
             answerOkContainer.style.display = "none";
+            answerResults.push("○");
         }else {
             ngSound.currentTime = 0;
             ngSound.play();
@@ -228,12 +240,14 @@ scripts += '''
             answerNGContainer.style.display = "block";
             await sleep(3000);
             answerNGContainer.style.display = "none";
+            answerResults.push("×");
         }
         scoreDisplay.textContent = `${username}さんのスコア: ${Math.round(score)}`;
 
         currentQuestionIndex++;
         if (currentQuestionIndex < numOfQuiz) {
             document.getElementById("countContainer").style.display = "block";
+            nextButton.style.visibility = "visible";
             displayQuestion();
         } else {
             displayScore();
@@ -261,12 +275,28 @@ scripts += '''
     // 解説を表示する
     function displayAnswers() {
         answersContainer.innerHTML = "<h4>解答と解説</h4>";
+        var tempStr = "";
+        var tempAns = "";
+        var tempSel = "";
         questions.forEach((question, index) => {
             const answerDiv = document.createElement("div");
             answerDiv.classList.add("mb-2");
+            tempAns = question.answer.split(" ")[0];
+            tempSel = selectedOptions[index] + "";
+            tempSel = tempSel.split(" ")[0];
+            if(answerResults[index] == "○") {
+                tempStr = "";
+            }else {
+                tempStr = `(正解は ${tempAns})`;
+            }
             answerDiv.innerHTML = `<strong>質問 ${index + 1}:</strong> ${question.question}
-                                   <strong>正解:</strong> ${question.answer}<br>
-                                   <strong>解説:</strong> ${question.explanation}`;
+                                   ＜
+                                   <strong>${username}さんの解答:</strong> ${tempSel}
+                                   <strong>[${answerResults[index]}]</strong>
+                                   ${tempStr}
+                                   ＞<br>
+                                   <strong>解説:</strong> ${question.explanation}
+                                   `;
             if(index < numOfQuiz) {
                 answersContainer.appendChild(answerDiv);
             }

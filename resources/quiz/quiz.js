@@ -99,7 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let score = 0;
     let isInit = true;
     let username = "名無し";
-    
+    let selectedOptions = [];
+    let answerResults = [];
+
     const questionContainer = document.getElementById("questionContainer");
     const optionsContainer = document.getElementById("optionsContainer");
     const nextButton = document.getElementById("nextButton");
@@ -139,14 +141,14 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
         questionContainer.innerHTML = currentQuestion.question;
-
+        // 左側に表示するキャラクターの定義
         document.getElementById("leftchr").innerHTML = "";
         const imgElementL = document.createElement("img");
         imgElementL.src = chrsL[currentQuestionIndex];
         imgElementL.classList.add("img-fluid", "mb-3");
         imgElementL.style.height = "160px";
         document.getElementById("leftchr").appendChild(imgElementL);
-
+        // 右側に表示するキャラクターの定義
         document.getElementById("rightchr").innerHTML = "";
         const imgElementR = document.createElement("img");
         imgElementR.src = chrsR[currentQuestionIndex];
@@ -168,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 選択肢のボタンを生成
         optionsContainer.innerHTML = "";
         i = 0;
-        numOption = currentQuestion.options.length;
+        var numOption = currentQuestion.options.length;
         currentQuestion.options.forEach((option) => {
             const optionButton = document.createElement("button");
             optionButton.classList.add("btn", "btn-outline-primary", "option");
@@ -215,12 +217,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // 次へボタンを押したときの処理
     nextButton.addEventListener("click", async () => {
         currentOptionButton.classList.remove("optionSelected","btn-outline-primary");
+        nextButton.style.visibility = "hidden";
+        selectedOptions.push(currentOptionName);
         if(document.getElementById("remainTime").innerText == 0) {
             // 時間切れのためスコア加算なし
             currentOptionButton.classList.add("optionNG");
             timeoverContainer.style.display = "block";
             await sleep(3000);
             timeoverContainer.style.display = "none";
+            answerResults.push("時間切れ");
         }else if(currentOptionName === questions[currentQuestionIndex].answer) {
             okSound.currentTime = 0;
             okSound.play();
@@ -229,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
             answerOkContainer.style.display = "block";
             await sleep(3000);
             answerOkContainer.style.display = "none";
+            answerResults.push("○");
         }else {
             ngSound.currentTime = 0;
             ngSound.play();
@@ -236,12 +242,14 @@ document.addEventListener("DOMContentLoaded", function () {
             answerNGContainer.style.display = "block";
             await sleep(3000);
             answerNGContainer.style.display = "none";
+            answerResults.push("×");
         }
         scoreDisplay.textContent = `${username}さんのスコア: ${Math.round(score)}`;
 
         currentQuestionIndex++;
         if (currentQuestionIndex < numOfQuiz) {
             document.getElementById("countContainer").style.display = "block";
+            nextButton.style.visibility = "visible";
             displayQuestion();
         } else {
             displayScore();
@@ -269,12 +277,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // 解説を表示する
     function displayAnswers() {
         answersContainer.innerHTML = "<h4>解答と解説</h4>";
+        var tempStr = "";
+        var tempAns = "";
+        var tempSel = "";
         questions.forEach((question, index) => {
             const answerDiv = document.createElement("div");
             answerDiv.classList.add("mb-2");
+            tempAns = question.answer.split(" ")[0];
+            tempSel = selectedOptions[index] + "";
+            tempSel = tempSel.split(" ")[0];
+            if(answerResults[index] == "○") {
+                tempStr = "";
+            }else {
+                tempStr = `(正解は ${tempAns})`;
+            }
             answerDiv.innerHTML = `<strong>質問 ${index + 1}:</strong> ${question.question}
-                                   <strong>正解:</strong> ${question.answer}<br>
-                                   <strong>解説:</strong> ${question.explanation}`;
+                                   ＜
+                                   <strong>${username}さんの解答:</strong> ${tempSel}
+                                   <strong>[${answerResults[index]}]</strong>
+                                   ${tempStr}
+                                   ＞<br>
+                                   <strong>解説:</strong> ${question.explanation}
+                                   `;
             if(index < numOfQuiz) {
                 answersContainer.appendChild(answerDiv);
             }
