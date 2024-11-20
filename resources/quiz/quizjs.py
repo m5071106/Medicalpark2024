@@ -290,11 +290,11 @@ scripts += '''
                 tempStr = `(正解は ${tempAns})`;
             }
             answerDiv.innerHTML = `<strong>質問 ${index + 1}:</strong> ${question.question}
-                                   ＜
-                                   <strong>${username}さんの解答:</strong> ${tempSel}
+                                   ≪
+                                   <strong>$選択:</strong> ${tempSel}
                                    <strong>[${answerResults[index]}]</strong>
                                    ${tempStr}
-                                   ＞<br>
+                                   ≫<br>
                                    <strong>解説:</strong> ${question.explanation}
                                    `;
             if(index < numOfQuiz) {

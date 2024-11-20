@@ -218,6 +218,18 @@ if debug_mode:
             const label3_4 = document.querySelector('#overlay3-4');
         '''
 
+# word_list.csv を読込み, model情報の初期値を作成する
+with open(os.path.dirname(__file__) + '/word_list.csv', 'r', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        postfix = row[0][-1]
+        body_4 += f'''
+            let model{postfix} = document.querySelector('#id-{row[0]}-1');
+        '''
+body_4 += '''
+            let initialRotation = model1.getAttribute('rotation');
+        '''
+
 body_4 += '''
             var msg1 = "";
             var msg2 = "";
@@ -236,10 +248,12 @@ body_4 += '''
 with open(os.path.dirname(__file__) + '/word_list.csv', 'r', encoding='utf-8') as f:
     reader = csv.reader(f)
     for row in reader:
+        postfix = row[0][-1]
         body_4 += f'''
                         case 'id-{row[0]}':
                             msg1 = '{row[1]}';
                             msg2 = '{row[2]}';
+                            model{postfix}.setAttribute('rotation', initialRotation);
                             break;
             '''
 
@@ -250,8 +264,10 @@ body_4 += '''
                         break;
                     }
                     label1.innerHTML = "<table><tr><td width='70%'>上下操作でモデル回転,左右操作でモデルを傾けます</td><td width='30%'><img src='img/Guide.png' height='150px'/></td></tr></table>";
-                    label2.innerHTML = prevMsg1 + " " + msg1; 
-                    prevMsg1 = prevMsg1 + " " + msg1;
+                    if (!prevMsg1.includes(msg1)) {
+                        label2.innerHTML = prevMsg1 + " " + msg1; 
+                        prevMsg1 = prevMsg1 + " " + msg1;
+                    }
     '''
 
 if debug_mode:
@@ -274,6 +290,23 @@ body_4 += '''
                         label1.textContent = "";
                         label2.textContent = "";
                         prevMsg1 = "";
+                    }
+                    switch(markerId) {
+        '''
+
+with open(os.path.dirname(__file__) + '/word_list.csv', 'r', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        postfix = row[0][-1]
+        body_4 += f'''
+                        case 'id-{row[0]}':
+                            model{postfix}.setAttribute('rotation', initialRotation);
+                            break;
+            '''
+
+body_4 += '''
+                    default:
+                        break;
                     }
                 });
             });
